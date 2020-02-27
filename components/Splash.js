@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
 // You can import from local files
-import StartCircle from './StartCircle';
+import SpringCircle from './SpringCircle';
 
 
 export default class Splash extends React.Component {
@@ -14,7 +14,7 @@ export default class Splash extends React.Component {
           ROOT
         </Text>
         
-        <StartCircle />
+        <SpringCircle />
       
       </View>
     );

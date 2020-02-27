@@ -5,7 +5,7 @@ import ChooseExercise from '../front-end/components/ChooseExercise';
 import GuidePelvic from '../front-end/components/GuidePelvic';
 import Splash from './components/Splash';
 import SpringCircle from './components/SpringCircle';
-
+import KegelFastTimer from './components/KegelFastTimer';
 
 export default function App() {
   console.log('hello!');
@@ -13,12 +13,9 @@ export default function App() {
     // <View style={styles.container}>
     //   <Text>Hey this is AYLOR</Text>
     // </View>
-    <View>
 
     
-    <Text>Hello!</Text>
-    <SpringCircle />
-    </View>
+    <KegelFastTimer />
   );
 }
 

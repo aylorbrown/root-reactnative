@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import Constants from 'expo-constants';
-import StartCircle from '../components/StartCircle';
+import SpringCircleGuide from '../components/SpringCircleGuide';
 
 
 export default function GuidePelvis() {
@@ -28,7 +28,7 @@ export default function GuidePelvis() {
             When we lose the connection to those deep muscles, it becomes difficult to relax the area, meaning the pelvic floor becomes perma-flexed. Imagine flexing your bicep constantly and never fully letting go and you get the idea: After a while, this would cause your arm to lose flexibility, strength, and the ability to relax. That's more or less what happens to the pelvic floor until you become aware of the stress and tension and do some work to alleviate it. Part of this is willfully relaxing and unclenching these muscles - and then directing energy to build strength. 
             </Text>
 
-            <StartCircle />
+            <SpringCircleGuide />
 
             </ScrollView>
 

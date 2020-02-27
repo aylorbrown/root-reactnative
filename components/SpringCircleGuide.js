@@ -55,9 +55,9 @@ const styles = StyleSheet.create({
         },
 
     circle: {
-        height: 300, 
-        width: 300,
-        borderRadius: 300/2,
+        height: 200, 
+        width: 200,
+        borderRadius: 200/2,
         backgroundColor: '#1c1aa9',
         borderWidth: 1,
         borderColor: 'black',
