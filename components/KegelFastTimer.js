@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import {
+    Text,
     Linking,
     View, 
     StyleSheet, 
     Button, 
-    Image
+    Image,
+    TouchableWithoutFeedback, 
+    TouchableHighlight
 } from 'react-native';
+import Constants from 'expo-constants';
+
+import PauseImage from '../assets/pause.png';
+import StartImage from '../assets/start.png';
+import NextImage from '../assets/next.png'
+
+import StartCircle from './StartCircle';
 
 
 
@@ -15,21 +25,14 @@ const FastTimer = (
     setValue, 
     saveData
     }
-) => {
+)  => {
     const MAXSECONDS = 5;
-    // declare initialize four states - seconds, isActive, reps, activity
-    // seconds storer the value of the timer
-    // isActive stores the timer's state for whether it is currently timing or paused, 
-    // reps stores the value of the number of reps - stop timer after x many reps
-    // activity toggles between squeeze and rest 
     const [seconds, setSeconds] = useState(MAXSECONDS);
     const [isActive, setIsActive] = useState(false);
     const [reps, setNumberReps] = useState(10);
     const [activity, setActivity] = useState('squeeze');
     // let history = useHistory();
 
-
-    // combines start and pause into one function/ button
     function toggle() {
         setIsActive(!isActive);
     }
@@ -48,21 +51,14 @@ const FastTimer = (
                   let currentDay = tempValue[n];
                   currentDay.minutes += 50/60
                     console.log(currentDay);
-                    // send to progress page when done with reps 
                 saveData(tempValue);
                 // history.push("/slowtimer");
                   setValue(
-                      //increase time for the day 
-                      //get the day number, where in array you are increasing 
-                      // return the day of the week 
                       value = tempValue
                   )
               } else {
-                  // reseting seconds to a different value
                   setSeconds(MAXSECONDS);
-                  // resets the number of reps, countdowns number of reps 
                   setNumberReps(reps => reps - 1);
-                  // reset activity
                   if (activity == 'rest') {
                       setActivity('squeeze');
                     } else {
@@ -91,7 +87,7 @@ const FastTimer = (
 
     return (
 
-        <View style={styles.app}>
+        <View style={styles.container}>
 
         {/* <View style={styles.guide}> */}
         {/* <nav className='guide'>
@@ -101,49 +97,122 @@ const FastTimer = (
         </nav> */}
 
         
-            <View style={style.time}>
+            <View style={styles.paragraph}>
+                <Text 
+                style={styles.text}>
+                    {activity}
+                </Text>
+                    {/* <button className={activity == 'squeeze'? 'circleTimerSqueeze' : 'circleTimerRest'}>{seconds}
+                    </button> */}
 
-            <View>
-                    <h6>{activity}</h6>
-                    <button className={activity == 'squeeze'? 'circle-timer-squeeze' : 'circle-timer-rest'}>{seconds}</button>
+
+            
+                <StartCircle
+                    duration={5000}
+                    shouldRun={isActive}
+                >
                     
-                    <h6>{reps} reps to go</h6>
-                   
-                <button className={`button button-primary button-primary-${isActive ? 'active' : 'inactive'}`} onPress={toggle}>
-                    {isActive ? <Image source={require('../assets/pause.png')} /> : <Image source={require('../assets/start.png')} />}
-                    </button>
-                   
+                <Text style={styles.textSeconds}>
+                    {seconds}
+                </Text>
+                    
+                </StartCircle>
+    
+                <Text style={styles.text}>
+                    {reps} reps to go
+                </Text>
+
+                    <TouchableWithoutFeedback
+                    onPress={toggle}>
+                        <Image 
+                        source={isActive ? PauseImage : StartImage}
+                        />
+                    </TouchableWithoutFeedback>
+
+                    <TouchableHighlight>
+                        {/* on press go to slow timer */}
+                        <Image 
+                        source={NextImage}
+                        />
+                    </TouchableHighlight>
+                
                    {/* icons at the bottom to link to next page */}
                     {/* <Link to="/slowtimer" className="next-arrow"><img src='/next.png'/></Link> */}
             </View>
             </View>
-        </View>
-        // </View>
     );
 }
 
 
 const styles= StyleSheet.create({
 
-    app: {
-        textAlign: 'center',
+    container: {
+        flexGrow: 1,
         backgroundColor: '#fc715e',
-        // min-height: 100vh;
-        // display: flex;
         flexDirection: 'column',
-        textAlign: 'center',
         justifyContent: 'center',
-        fontSize: 36,
-        color: '#1c1aa9',
+        padding: 8,
+        paddingTop: Constants.statusBarHeight,
     },
     
+    paragraph: {
+        margin: 48,
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
 
-    time: {
-        width: 600,
+      text: {
+        fontSize: 24, 
+        color: '#1c1aa9',
+        fontWeight: 'bold',
+      },
+
+
+      textSeconds: {
         fontSize: 48,
-    }
+        color: 'white',
+        fontWeight: 'bold',
+      }, 
 
-    
+
+    circleTimerSqueeze: {
+        height: 100,
+        width: 100,
+        borderRadius: 100/2,
+        backgroundColor: '#1c1aa9',
+        borderWidth: 1,
+        borderColor: 'black',
+
+        fontSize: 36,
+        color: '#f8f8ff',
+
+        // transition: 1,
+    }, 
+
+    circleTimerRest: {
+        height: 150,
+        width: 150,
+        borderRadius: 150/2,
+        backgroundColor: '#1c1aa9',
+        borderWidth: 1,
+        borderColor: 'black',
+
+        fontSize: 36,
+        color: '#f8f8ff',
+    },
+
+    active: {
+        backgroundColor: '#fc715e',
+        borderWidth: 1,
+        borderColor: '#fc715e',
+      },
+      
+    inactive: {
+        backgroundColor: '#fc715e',
+        borderWidth: 1,
+        borderColor: '#fc715e',
+      }
 
 
 

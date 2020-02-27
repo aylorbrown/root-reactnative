@@ -1,17 +1,71 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { 
+  StyleSheet, 
+  View, 
+  Text, 
+  Animated, 
+  Easing,
+  TouchableOpacityBase} from 'react-native';
 
 
-export default class PlainCircle extends React.Component {
+export default class StartCircle extends React.Component {
+  constructor(props){
+    super(props);
+    console.log(props.duration);
+    this.state = {
+      start: .8,
+      end: .6,
+      duration: props.duration,
+      scale: new Animated.Value(.8),
+      isSqueezing: true
+    } 
+  }
+  
+  _start = () => {
+    console.log('hello!')
+    Animated.timing(this.state.scale, {
+      toValue: this.state.end, // output
+      duration: this.state.duration,
+      easing: Easing.ease
+    }).start(() => {
+      console.log('done')
+      this.setState({
+        start: this.state.end,
+        end: this.state.start,
+        isSqueezing: !this.state.isSqueezing
+      }, () => {
+        this._start();
+        // this.props.toggle();
+      })
+    });
+  };
+
+// use effect
+  componentDidUpdate(prevProps) {
+    if(prevProps.shouldRun !== this.props.shouldRun) {
+      if (this.props.shouldRun) {
+        this._start()
+      }
+    }
+  }
+
   render () {
     return (
+
       <View style={styles.container}>
-        <View style={styles.circle}>
-        </View>
+      <Animated.View style={{
+          ...styles.circle,
+          transform: [
+            {scale: this.state.scale}
+          ]}}>
+        
+          {/* look at this later */}
+          {this.props.children}
+        
+      </Animated.View>
       </View>
     )
   }
-
 }
 
 const styles = StyleSheet.create({
@@ -29,6 +83,13 @@ const styles = StyleSheet.create({
   backgroundColor: '#1c1aa9',
   borderWidth: 1,
   borderColor: 'black',
+  flexDirection:'column',
 
   }
 })
+
+
+// when you flip it! 
+// this.setState({
+//   isSqueezing: !this.state.isSqueezing
+// })

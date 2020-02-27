@@ -15,7 +15,14 @@ export default function App() {
     // </View>
 
     
-    <KegelFastTimer />
+      
+      <KegelFastTimer
+      value={[]}
+      />
+     
+      
+
+   
   );
 }
 
