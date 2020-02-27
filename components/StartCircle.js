@@ -61,7 +61,6 @@ export default class StartCircle extends React.Component {
         
           {/* look at this later */}
           {this.props.children}
-        
       </Animated.View>
       </View>
     )

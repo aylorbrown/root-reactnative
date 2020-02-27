@@ -6,6 +6,7 @@ import GuidePelvic from '../front-end/components/GuidePelvic';
 import Splash from './components/Splash';
 import SpringCircle from './components/SpringCircle';
 import KegelFastTimer from './components/KegelFastTimer';
+import KegelSlowTimer from './components/KegelSlowTimer';
 
 export default function App() {
   console.log('hello!');
@@ -16,7 +17,7 @@ export default function App() {
 
     
       
-      <KegelFastTimer
+      <KegelSlowTimer
       value={[]}
       />
      
