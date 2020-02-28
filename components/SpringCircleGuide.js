@@ -18,10 +18,8 @@ const trans = (x, y, s) => [
 ]
 const AnimatedView = animated(View);
 
-export default function SpringCircle() {
+export default function SpringCircleGuide() {
   const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 10, tension: 3350, friction: 80 } }))
-//   console.log('hello again!')
-//   console.table(animated);
   return (
     
     <View style={styles.container}>

@@ -19,18 +19,18 @@ import StartCircle from './StartCircle';
 
 
 
-const SlowTimer = (
+const SquatTimer = (
     {
     value,
     setValue, 
     saveData
     }
 )  => {
-    const MAXSECONDS = 1;
+    const MAXSECONDS = 5;
     const [seconds, setSeconds] = useState(MAXSECONDS);
     const [isActive, setIsActive] = useState(false);
-    const [reps, setNumberReps] = useState(5);
-    const [activity, setActivity] = useState('squeeze');
+    const [reps, setNumberReps] = useState(10);
+    const [activity, setActivity] = useState('squat');
     // let history = useHistory();
 
     function toggle() {
@@ -42,14 +42,15 @@ const SlowTimer = (
       let littleTimer = null;
 
       let countDown = () => {
-          if (seconds ==0){
+          if (seconds ==1){
               if (reps ==0) {
                 // to get day of week 
                 var d = new Date();
                 var n = d.getDay();//5
                   let tempValue = [...value];
                   let currentDay = tempValue[n];
-                  currentDay.minutes += 25/60
+                  currentDay.minutes += 50/60
+                    console.log(currentDay);
                 saveData(tempValue);
                 // history.push("/slowtimer");
                   setValue(
@@ -59,7 +60,7 @@ const SlowTimer = (
                   setSeconds(MAXSECONDS);
                   setNumberReps(reps => reps - 1);
                   if (activity == 'rest') {
-                      setActivity('squeeze');
+                      setActivity('squat');
                     } else {
                         setActivity('rest');
                   }
@@ -101,9 +102,9 @@ const SlowTimer = (
                 style={styles.text}>
                     {activity}
                 </Text>
-                   
+                
                 <StartCircle
-                    duration={1000}
+                    duration={5000}
                     shouldRun={isActive}
                 >
                     
@@ -125,7 +126,7 @@ const SlowTimer = (
                     </TouchableWithoutFeedback>
 
                     <TouchableHighlight>
-                        {/* on press go to progress page */}
+                        {/* on press go to slow timer */}
                         <Image 
                         source={NextImage}
                         />
@@ -143,7 +144,7 @@ const styles= StyleSheet.create({
 
     container: {
         flexGrow: 1,
-        backgroundColor: '#fc715e',
+        backgroundColor: '#33c18b',
         flexDirection: 'column',
         justifyContent: 'center',
         padding: 8,
@@ -168,8 +169,6 @@ const styles= StyleSheet.create({
         fontSize: 48,
         color: 'white',
         fontWeight: 'bold',
-        alignItems: 'center',
-        justifyContent: 'center',
       }, 
 
 
@@ -183,8 +182,6 @@ const styles= StyleSheet.create({
 
         fontSize: 36,
         color: '#f8f8ff',
-
-        // transition: 1,
     }, 
 
     circleTimerRest: {
@@ -214,5 +211,5 @@ const styles= StyleSheet.create({
 
 
 })
-export default SlowTimer;
+export default SquatTimer;
 
