@@ -12,7 +12,7 @@ import {
   VictoryLabel, 
   VictoryStack } from "victory-native";
 
-// import UserContext from './UserContext';
+import UserContext from './UserContext';
 
 const data = [
     { day: 'Mon', minutes: 5 },

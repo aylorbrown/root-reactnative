@@ -89,6 +89,10 @@ const SquatTimer = (
 
         <View style={styles.container}>
 
+
+        <Button 
+        title="go to progress"
+        onPress={() => history.pushState('/home')} />
         {/* <View style={styles.guide}> */}
         {/* <nav className='guide'>
         <Link to="/progress">HOME</Link>
