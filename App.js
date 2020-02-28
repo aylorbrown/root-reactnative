@@ -30,7 +30,7 @@ export default function App() {
       // value={[]}
       // />
 
-      <SquatTimer />
+      <Home />
 
 
       

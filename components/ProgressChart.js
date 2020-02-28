@@ -74,9 +74,10 @@ export default function ProgressChart() {
         barWidth={40}
         style={{ 
           data: { fill: "#1c1aa9" },
-          labels: { fill: "white"}
+          labels: {fill: "white"}
         }}
-        labelComponent={<VictoryLabel dy={-10}/>}
+        labels={({ datum }) => datum.minutes}
+        labelComponent={<VictoryLabel dy={30}/>}
         x={'day'}
         y={'minutes'}
         />
@@ -90,7 +91,8 @@ export default function ProgressChart() {
           data: { fill: "#33c18b" },
           labels: { fill: "white"}
         }}
-        labelComponent={<VictoryLabel dy={-10}/>}
+        labels={({ datum }) => datum.minutes}
+        labelComponent={<VictoryLabel dy={20}/>}
         x={'day'}
         y={'minutes'}
         />
