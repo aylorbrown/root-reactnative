@@ -67,7 +67,7 @@ export default function AppRouter() {
            
           <Route path="/GuideSquat" component={GuideSquat} />
            
-          <Route path="/SquatTimer" component={SquatTimer} />
+          <Route path="/SquatTimer" component={SquatTimer}  />
             
         </Switch>
       </View>

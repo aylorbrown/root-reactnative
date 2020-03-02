@@ -7,13 +7,14 @@ import {
     Button, 
     Image,
     TouchableWithoutFeedback, 
-    TouchableHighlight
+    TouchableHighlight, 
+    SafeAreaView
 } from 'react-native';
 import Constants from 'expo-constants';
+import { Redirect } from 'react-router-native';
 
 import PauseImage from '../assets/pause.png';
 import StartImage from '../assets/start.png';
-import NextImage from '../assets/next.png'
 
 import StartCircle from './StartCircle';
 
@@ -29,9 +30,9 @@ const SquatTimer = (
     const MAXSECONDS = 5;
     const [seconds, setSeconds] = useState(MAXSECONDS);
     const [isActive, setIsActive] = useState(false);
-    const [reps, setNumberReps] = useState(10);
+    const [reps, setNumberReps] = useState(8);
     const [activity, setActivity] = useState('squat');
-    // let history = useHistory();
+    const [redirect, setRedirect] = useState(false);
 
     function toggle() {
         setIsActive(!isActive);
@@ -47,15 +48,15 @@ const SquatTimer = (
                 // to get day of week 
                 var d = new Date();
                 var n = d.getDay();//5
-                  let tempValue = [...value];
-                  let currentDay = tempValue[n];
-                  currentDay.minutes += 50/60
-                    console.log(currentDay);
-                saveData(tempValue);
+                //   let tempValue = [...value];
+                //   let currentDay = tempValue[n];
+                //   currentDay.minutes += 50/60
+                // saveData(tempValue);
+                setRedirect(true);
                 // history.push("/slowtimer");
-                  setValue(
-                      value = tempValue
-                  )
+                //   setValue(
+                //       value = tempValue
+                //   )
               } else {
                   setSeconds(MAXSECONDS);
                   setNumberReps(reps => reps - 1);
@@ -86,21 +87,10 @@ const SquatTimer = (
     }, [isActive, seconds, reps, activity]);
 
     return (
+        <SafeAreaView style={styles.container}>
+            {redirect && <Redirect to='/Home' />}
 
-        <View style={styles.container}>
 
-
-        <Button 
-        title="go to progress"
-        onPress={() => history.pushState('/home')} />
-        {/* <View style={styles.guide}> */}
-        {/* <nav className='guide'>
-        <Link to="/progress">HOME</Link>
-        <Link to="#">TIMER</Link>    
-        <Link to="/guide">GUIDE</Link>
-        </nav> */}
-
-        
             <View style={styles.paragraph}>
                 <Text 
                 style={styles.text}>
@@ -129,17 +119,14 @@ const SquatTimer = (
                         />
                     </TouchableWithoutFeedback>
 
-                    <TouchableHighlight>
-                        {/* on press go to slow timer */}
+                    {/* <TouchableHighlight>
                         <Image 
                         source={NextImage}
                         />
-                    </TouchableHighlight>
+                    </TouchableHighlight> */}
                 
-                   {/* icons at the bottom to link to next page */}
-                    {/* <Link to="/slowtimer" className="next-arrow"><img src='/next.png'/></Link> */}
             </View>
-            </View>
+            </SafeAreaView>
     );
 }
 
@@ -148,11 +135,13 @@ const styles= StyleSheet.create({
 
     container: {
         flexGrow: 1,
+        paddingTop: Constants.statusBarHeight,
+        paddingStart: Constants.statusBarHeight,
+        paddingEnd: Constants.statusBarHeight,
         backgroundColor: '#33c18b',
         flexDirection: 'column',
         justifyContent: 'center',
         padding: 8,
-        paddingTop: Constants.statusBarHeight,
     },
     
     paragraph: {

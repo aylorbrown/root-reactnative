@@ -3,38 +3,83 @@ import {
     StyleSheet, 
     Text, 
     SafeAreaView,
-    ScrollView
+    ScrollView, 
+    Animated
 } from 'react-native';
-
 import Constants from 'expo-constants';
+import { Redirect } from 'react-router-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { RectButton } from 'react-native-gesture-handler';
 import SpringCircleGuide from './SpringCircleGuide';
+import { render } from 'react-dom';
 
 
-export default function GuideKegel() {
+export default class GuideKegel extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          redirect: false
+        }
+      }
+      renderRightActions = (progress, dragX) => {
+        const trans = dragX.interpolate({
+          inputRange: [0, 100],
+          outputRange: [0, 1],
+        
+        });
+
         return (
-        <SafeAreaView style={styles.container}>
+            <RectButton style={styles.leftAction} onPress={console.log('Pressed')}>
+              <Animated.Text
+                style={[
+                  styles.actionText,
+                  {
+                    transform: [{ translateX: trans }],
+                  },
+                ]}>
+                Swiped
+              </Animated.Text>
+            </RectButton>
+          );
+        };
 
-            <ScrollView style={styles.scrollView}>
+        render() {
 
-            <Text style={styles.text}>
-            Before you can release and enhance the well-being of your pelvic floor, first you have to feel it and connect with it. 
+            return (
+            <SafeAreaView style={styles.container}>
+                {this.state.redirect && <Redirect to='/KegelFastTimer'/>}
+                <ScrollView style={styles.scrollView}>
+    
+                <Text style={styles.text}>
+                Before you can release and enhance the well-being of your pelvic floor, first you have to feel it and connect with it. 
+    
+                </Text>
+                
+                <Text style={styles.text}>
+                Close your eyes and visualize the muscles at the base of your core, between your sitz bones, that you would use to cut your pee off midstream. Without using your butt or abs, contract your rosebud, pull it up into your body, and hold it. You should feel a tightening around your vagina. 
+                </Text>
+    
+                <Text style={styles.text}>
+                Contrast this move by letting go of the muscles, feeling space between your site bones, and allowing your rose to loom. Feel the base of your core real, and then relax and expand a little more from there until you experience a complete surrender or holding. You will feel your belly relax, your shoulders melt, and your jaw and head release. 
+                </Text>
+    
+                <Swipeable
+                renderRightActions={this.renderRightActions}
+                onSwipeableRightOpen={() => {
+                    this.setState({
+                        redirect:true
+                    })
+                }}
+                >
+                <SpringCircleGuide />
 
-            </Text>
-            
-            <Text style={styles.text}>
-            Close your eyes and visualize the muscles at the base of your core, between your sitz bones, that you would use to cut your pee off midstream. Without using your butt or abs, contract your rosebud, pull it up into your body, and hold it. You should feel a tightening around your vagina. 
-            </Text>
-
-            <Text style={styles.text}>
-            Contrast this move by letting go of the muscles, feeling space between your site bones, and allowing your rose to loom. Feel the base of your core real, and then relax and expand a little more from there until you experience a complete surrender or holding. You will feel your belly relax, your shoulders melt, and your jaw and head release. 
-            </Text>
-
-            <SpringCircleGuide />
-
-            </ScrollView>
-
-        </SafeAreaView>
-        );
+                </Swipeable>
+    
+                </ScrollView>
+    
+            </SafeAreaView>
+            );
+        }
     }  
 
 const styles = StyleSheet.create({

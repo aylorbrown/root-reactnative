@@ -10,10 +10,11 @@ import {
     TouchableHighlight
 } from 'react-native';
 import Constants from 'expo-constants';
+import { Redirect } from 'react-router-native';
+
 
 import PauseImage from '../assets/pause.png';
 import StartImage from '../assets/start.png';
-import NextImage from '../assets/next.png'
 
 import StartCircle from './StartCircle';
 
@@ -31,6 +32,7 @@ const SlowTimer = (
     const [isActive, setIsActive] = useState(false);
     const [reps, setNumberReps] = useState(5);
     const [activity, setActivity] = useState('squeeze');
+    const [redirect, setRedirect] = useState(false);
     // let history = useHistory();
 
     function toggle() {
@@ -41,20 +43,23 @@ const SlowTimer = (
       let interval = null;
       let littleTimer = null;
 
+
       let countDown = () => {
           if (seconds ==0){
               if (reps ==0) {
                 // to get day of week 
                 var d = new Date();
-                var n = d.getDay();//5
-                  let tempValue = [...value];
-                  let currentDay = tempValue[n];
-                  currentDay.minutes += 25/60
-                saveData(tempValue);
+                var n = d.getDay();
+                //   let tempValue = [...value];
+                // let tempValue = [];
+                //   let currentDay = tempValue[n];
+                //   currentDay.minutes += 25/60
+                // saveData(tempValue);
+                setRedirect(true);
                 // history.push("/slowtimer");
-                  setValue(
-                      value = tempValue
-                  )
+                //   setValue(
+                //       value = tempValue
+                //   )
               } else {
                   setSeconds(MAXSECONDS);
                   setNumberReps(reps => reps - 1);
@@ -87,15 +92,9 @@ const SlowTimer = (
     return (
 
         <View style={styles.container}>
+            {redirect && <Redirect to='/Home' />}
 
-        {/* <View style={styles.guide}> */}
-        {/* <nav className='guide'>
-        <Link to="/progress">HOME</Link>
-        <Link to="#">TIMER</Link>    
-        <Link to="/guide">GUIDE</Link>
-        </nav> */}
 
-        
             <View style={styles.paragraph}>
                 <Text 
                 style={styles.text}>
@@ -124,15 +123,8 @@ const SlowTimer = (
                         />
                     </TouchableWithoutFeedback>
 
-                    <TouchableHighlight>
-                        {/* on press go to progress page */}
-                        <Image 
-                        source={NextImage}
-                        />
-                    </TouchableHighlight>
+                    {/* when isActive == false redirect to home */}
                 
-                   {/* icons at the bottom to link to next page */}
-                    {/* <Link to="/slowtimer" className="next-arrow"><img src='/next.png'/></Link> */}
             </View>
             </View>
     );

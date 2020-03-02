@@ -10,6 +10,7 @@ import {
     TouchableHighlight
 } from 'react-native';
 import Constants from 'expo-constants';
+import { Redirect } from 'react-router-native';
 
 import PauseImage from '../assets/pause.png';
 import StartImage from '../assets/start.png';
@@ -31,6 +32,7 @@ const FastTimer = (
     const [isActive, setIsActive] = useState(false);
     const [reps, setNumberReps] = useState(10);
     const [activity, setActivity] = useState('squeeze');
+    const [redirect, setRedirect] = useState(false);
     // let history = useHistory();
 
     function toggle() {
@@ -88,25 +90,15 @@ const FastTimer = (
     return (
 
         <View style={styles.container}>
+            {redirect && <Redirect to='/KegelSlowTimer' />}
 
-        {/* <View style={styles.guide}> */}
-        {/* <nav className='guide'>
-        <Link to="/progress">HOME</Link>
-        <Link to="#">TIMER</Link>    
-        <Link to="/guide">GUIDE</Link>
-        </nav> */}
 
-        
             <View style={styles.paragraph}>
                 <Text 
                 style={styles.text}>
                     {activity}
                 </Text>
-                    {/* <button className={activity == 'squeeze'? 'circleTimerSqueeze' : 'circleTimerRest'}>{seconds}
-                    </button> */}
-
-
-            
+                   
                 <StartCircle
                     duration={5000}
                     shouldRun={isActive}
@@ -129,8 +121,14 @@ const FastTimer = (
                         />
                     </TouchableWithoutFeedback>
 
-                    <TouchableHighlight>
-                        {/* on press go to slow timer */}
+                    <TouchableHighlight
+                    onPress={() => {
+                        setRedirect({
+                            redirect
+                        })
+                    }}
+                    >
+                        {/* redirect to KegelSlowTimer here */}
                         <Image 
                         source={NextImage}
                         />

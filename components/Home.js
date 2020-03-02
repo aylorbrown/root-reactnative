@@ -1,30 +1,46 @@
 // import progress chart here 
-import React, { useContext } from 'react';
+import React, { Component } from 'react';
 import { 
     StyleSheet, 
     View,
     TouchableHighlight,
     Text } from "react-native";
 import Constants from 'expo-constants';
+import { Redirect } from 'react-router-native';
 
 import ProgressChart from '../components/ProgressChart';
 
 
-    export default function Home() {
+    export default class Home extends Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                redirect: false
+            }
+        }
 
-        return(
-            <View style={styles.container}>
-                <ProgressChart />
-            
+        render() {
 
-            <TouchableHighlight
-            style={styles.button}
-            // onPress= go to ChooseExercise
-            >
-                <Text style={styles.buttonText}>START</Text>
-            </TouchableHighlight>
-            </View>
-        )
+            return(
+                <View style={styles.container}>
+                    {this.state.redirect && <Redirect to='/ChooseExercise' />}
+
+                    <ProgressChart />
+                
+    
+                <TouchableHighlight
+                style={styles.button}
+                onPress={() => {
+                    this.setState({
+                        redirect: true
+                    })
+                }}
+                >
+                    <Text style={styles.buttonText}>START</Text>
+                </TouchableHighlight>
+                </View>
+            )
+        }
     }
 
     const styles = StyleSheet.create ({
