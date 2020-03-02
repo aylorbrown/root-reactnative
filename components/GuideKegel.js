@@ -17,15 +17,16 @@ export default function GuideKegel() {
             <ScrollView style={styles.scrollView}>
 
             <Text style={styles.text}>
-            The pelvic floor is a group of muscles that attaches to the bones at the bottom of your pelvis. These muscles effectively form a hammock across the base of your pelvis that supports the internal organs above it. Having strong pelvic floor muscles give you proper control over our bladder and bowels, improve sexual performance and orgasm, help stabilize the hip joints, and act as a lymphatic pump for the pelvis. 
+            Before you can release and enhance the well-being of your pelvic floor, first you have to feel it and connect with it. 
+
             </Text>
             
             <Text style={styles.text}>
-            In Eastern traditions, the pelvic floor is known as the root chakra - it's where we tend to literally "hold" fears, specifically fears around primary instincts such as our health, our family's safety, and our financial security. It is a "stress container," in that it's where we process the emotion and house our fight or flight reactions. 
+            Close your eyes and visualize the muscles at the base of your core, between your sitz bones, that you would use to cut your pee off midstream. Without using your butt or abs, contract your rosebud, pull it up into your body, and hold it. You should feel a tightening around your vagina. 
             </Text>
 
             <Text style={styles.text}>
-            When we lose the connection to those deep muscles, it becomes difficult to relax the area, meaning the pelvic floor becomes perma-flexed. Imagine flexing your bicep constantly and never fully letting go and you get the idea: After a while, this would cause your arm to lose flexibility, strength, and the ability to relax. That's more or less what happens to the pelvic floor until you become aware of the stress and tension and do some work to alleviate it. Part of this is willfully relaxing and unclenching these muscles - and then directing energy to build strength. 
+            Contrast this move by letting go of the muscles, feeling space between your site bones, and allowing your rose to loom. Feel the base of your core real, and then relax and expand a little more from there until you experience a complete surrender or holding. You will feel your belly relax, your shoulders melt, and your jaw and head release. 
             </Text>
 
             <SpringCircleGuide />

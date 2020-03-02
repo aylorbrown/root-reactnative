@@ -2,57 +2,76 @@ import * as React from 'react';
 import { 
   Text, 
   View, 
-  StyleSheet,
-  TouchableWithoutFeedback } from 'react-native';
+  StyleSheet, 
+  Animated} from 'react-native';
 import Constants from 'expo-constants';
 import { Redirect } from 'react-router-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { RectButton } from 'react-native-gesture-handler';
 
-// You can import from local files
+
 import SpringCircle from './SpringCircle';
 
 
 export default class Splash extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    // when you load page, you dont want to redirect 
     this.state = {
       redirect: false
-    };
+    }
   }
+  renderRightActions = (progress, dragX) => {
+    const trans = dragX.interpolate({
+      inputRange: [0, 100],
+      outputRange: [0, 1],
+    
+    });
 
-  componentDidMount() {
-    this.timeoutHandle = setTimeout(() =>{
-      // redirect information 
-      this.setState({
-        redirect: true
-      })
-      
-    }, 7000);
-  }
 
-  componentWillUnmount() {
-    clearTimeout(this.timeoutHandle);
-  }
 
+    return (
+      <RectButton style={styles.leftAction} onPress={console.log('Pressed')}>
+        <Animated.Text
+          style={[
+            styles.actionText,
+            {
+              transform: [{ translateX: trans }],
+            },
+          ]}>
+          Swiped
+        </Animated.Text>
+      </RectButton>
+    );
+  };
 
   render() {
     return (
-      <View style={styles.container}
       
-      >
+      <View style={styles.container}>
+        {this.state.redirect && <Redirect to='/GuidePelvic' />}
         <Text style={styles.paragraph}>
           ROOT
         </Text>
         
-        <TouchableWithoutFeedback onPress={() => history.push('/GuidePelvic')}>
+        <Swipeable
+        renderRightActions={this.renderRightActions}
+        onSwipeableRightOpen={() => {
+          this.setState({
+            redirect: true
+          })
+        }}>
         <SpringCircle />
-        </TouchableWithoutFeedback>
+
+        </Swipeable>
+        
       
-        {this.state.redirect && <Redirect to='/GuidePelvic' />}
       </View>
+      
     );
   }
 }
+
+// .then{this.state.redirect && <Redirect to='/GuidePelvic' />}
 
 const styles = StyleSheet.create({
   container: {
@@ -70,3 +89,27 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+
+// redirect timer 
+ // constructor(props){
+  //   super(props);
+    // when you load page, you dont want to redirect 
+  //   this.state = {
+  //     redirect: false
+  //   };
+  // }
+
+  // componentDidMount() {
+  //   this.timeoutHandle = setTimeout(() =>{
+      // redirect information 
+  //     this.setState({
+  //       redirect: true
+  //     })
+      
+  //   }, 7000);
+  // }
+
+  // componentWillUnmount() {
+  //   clearTimeout(this.timeoutHandle);
+  // }
