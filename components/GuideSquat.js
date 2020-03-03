@@ -13,7 +13,6 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { RectButton } from 'react-native-gesture-handler';
 
 import SpringCircleGuide from './SpringCircleGuide';
-import { render } from 'react-dom';
 
 
 export default class GuideSquat extends React.Component {

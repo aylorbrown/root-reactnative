@@ -25,7 +25,19 @@ import ProgressChart from '../components/ProgressChart';
                 <View style={styles.container}>
                     {this.state.redirect && <Redirect to='/ChooseExercise' />}
 
+                    <View style={styles.headerNav}>
+                        <Text style={styles.title}>
+                            HOME
+                        </Text>
+                
+                        <Text style={styles.guideLink}>
+                            GUIDE
+                        </Text>
+                    </View>
+
+                    <View style={styles.chartContainer}>
                     <ProgressChart />
+                    </View>
                 
     
                 <TouchableHighlight
@@ -53,15 +65,43 @@ import ProgressChart from '../components/ProgressChart';
             justifyContent: 'center',
           },
 
-          button: {
+        headerNav: {
+            flexDirection: 'row',
+        },
+
+        title: {
+            fontSize: 24, 
+            color: '#1c1aa9',
+            fontWeight: 'bold',
+    
+            bottom: 140,
+        },
+
+        guideLink: {
+            fontSize: 24, 
+            color: '#1c1aa9',
+            fontWeight: 'bold',
+    
+            bottom: 140,
+        },
+    
+
+        chartContainer: {
+            top: 40
+        },
+
+        button: {
             alignItems: 'center',
             backgroundColor: '#fc715e',
+            fontWeight: 'bold',
+
             padding: 10,
+            top: 140,
           },
         
-          buttonText: {
+        buttonText: {
             color: '#1c1aa9',
-            fontWeight: '600',
+            fontWeight: 'bold',
             fontSize: 24
           }
 

@@ -94,6 +94,19 @@ const FastTimer = (
 
 
             <View style={styles.paragraph}>
+
+                <View style={styles.headerNav}>
+                    <Text style={styles.home}>
+                        HOME
+                    </Text>
+                    <Text style={styles.title}>
+                        KEGEL
+                    </Text>
+                    <Text style={styles.guideLink}>
+                        GUIDE
+                    </Text>
+                </View>
+
                 <Text 
                 style={styles.text}>
                     {activity}
@@ -114,7 +127,9 @@ const FastTimer = (
                     {reps} reps to go
                 </Text>
 
+                <View style={styles.icons}>
                     <TouchableWithoutFeedback
+                    style={styles.icon}
                     onPress={toggle}>
                         <Image 
                         source={isActive ? PauseImage : StartImage}
@@ -122,6 +137,7 @@ const FastTimer = (
                     </TouchableWithoutFeedback>
 
                     <TouchableHighlight
+                    style={styles.icon}
                     onPress={() => {
                         setRedirect({
                             redirect
@@ -133,9 +149,7 @@ const FastTimer = (
                         source={NextImage}
                         />
                     </TouchableHighlight>
-                
-                   {/* icons at the bottom to link to next page */}
-                    {/* <Link to="/slowtimer" className="next-arrow"><img src='/next.png'/></Link> */}
+                    </View>
             </View>
             </View>
     );
@@ -160,19 +174,59 @@ const styles= StyleSheet.create({
         alignItems: 'center',
       },
 
-      text: {
+    headerNav: {
+        flexDirection: 'row',
+    },
+
+    home: {
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',
+
+        bottom: 140,
+        right: 65
       },
 
+    title: {
+        fontSize: 24, 
+        color: '#1c1aa9',
+        fontWeight: 'bold',
 
-      textSeconds: {
+        bottom: 140
+      },
+
+    guideLink: {
+        fontSize: 24, 
+        color: '#1c1aa9',
+        fontWeight: 'bold',
+
+        bottom: 140,
+        left: 65,
+    },
+
+    textSeconds: {
         fontSize: 48,
         color: 'white',
         fontWeight: 'bold',
-      }, 
 
+        left: 85, 
+        top: 70,
+      }, 
+    
+    text: {
+        fontSize: 24, 
+        color: '#1c1aa9',
+        fontWeight: 'bold',
+    },
+
+    icons: {
+        flexDirection: 'row',
+        top: 140,
+      },
+
+    icon: {
+        paddingStart: 40,
+      },
 
     circleTimerSqueeze: {
         height: 100,
@@ -184,8 +238,6 @@ const styles= StyleSheet.create({
 
         fontSize: 36,
         color: '#f8f8ff',
-
-        // transition: 1,
     }, 
 
     circleTimerRest: {
@@ -211,8 +263,6 @@ const styles= StyleSheet.create({
         borderWidth: 1,
         borderColor: '#fc715e',
       }
-
-
 
 })
 export default FastTimer;

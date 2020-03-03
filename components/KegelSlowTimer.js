@@ -96,6 +96,19 @@ const SlowTimer = (
 
 
             <View style={styles.paragraph}>
+
+                <View style={styles.headerNav}>
+                    <Text style={styles.home}>
+                        HOME
+                    </Text>
+                    <Text style={styles.title}>
+                        KEGEL
+                    </Text>
+                    <Text style={styles.guideLink}>
+                        GUIDE
+                    </Text>
+                </View>
+
                 <Text 
                 style={styles.text}>
                     {activity}
@@ -116,15 +129,14 @@ const SlowTimer = (
                     {reps} reps to go
                 </Text>
 
-                    <TouchableWithoutFeedback
+                <View style={styles.icons}>
+                <TouchableWithoutFeedback
                     onPress={toggle}>
                         <Image 
                         source={isActive ? PauseImage : StartImage}
                         />
-                    </TouchableWithoutFeedback>
-
-                    {/* when isActive == false redirect to home */}
-                
+                 </TouchableWithoutFeedback>
+                 </View>
             </View>
             </View>
     );
@@ -149,20 +161,56 @@ const styles= StyleSheet.create({
         alignItems: 'center',
       },
 
-      text: {
+    headerNav: {
+        flexDirection: 'row',
+    },
+
+    home: {
+        fontSize: 24, 
+        color: '#1c1aa9',
+        fontWeight: 'bold',
+
+        bottom: 140,
+        right: 65,
+    },
+
+    title: {
+        fontSize: 24, 
+        color: '#1c1aa9',
+        fontWeight: 'bold',
+
+        bottom: 140,
+    },
+
+    guideLink: {
+        fontSize: 24, 
+        color: '#1c1aa9',
+        fontWeight: 'bold',
+
+        bottom: 140,
+        left: 65,
+    },
+
+    text: {
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',
       },
 
 
-      textSeconds: {
+    textSeconds: {
         fontSize: 48,
         color: 'white',
         fontWeight: 'bold',
-        alignItems: 'center',
-        justifyContent: 'center',
+
+        left: 85, 
+        top: 70,
       }, 
+
+    icons: {
+        flexDirection: 'row',
+        top: 140
+    },
 
 
     circleTimerSqueeze: {
@@ -175,8 +223,6 @@ const styles= StyleSheet.create({
 
         fontSize: 36,
         color: '#f8f8ff',
-
-        // transition: 1,
     }, 
 
     circleTimerRest: {
@@ -202,8 +248,6 @@ const styles= StyleSheet.create({
         borderWidth: 1,
         borderColor: '#fc715e',
       }
-
-
 
 })
 export default SlowTimer;
