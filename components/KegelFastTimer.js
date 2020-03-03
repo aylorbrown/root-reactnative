@@ -7,7 +7,8 @@ import {
     Button, 
     Image,
     TouchableWithoutFeedback, 
-    TouchableHighlight
+    TouchableHighlight,
+    TouchableOpacity
 } from 'react-native';
 import Constants from 'expo-constants';
 import { Redirect } from 'react-router-native';
@@ -33,6 +34,10 @@ const FastTimer = (
     const [reps, setNumberReps] = useState(10);
     const [activity, setActivity] = useState('squeeze');
     const [redirect, setRedirect] = useState(false);
+    const [redirectHome, setRedirectHome] = useState(false);
+    const [redirectGuideKegel, setRedirectGuideKegel] = useState(false);
+
+
     // let history = useHistory();
 
     function toggle() {
@@ -49,15 +54,14 @@ const FastTimer = (
                 // to get day of week 
                 var d = new Date();
                 var n = d.getDay();//5
-                  let tempValue = [...value];
-                  let currentDay = tempValue[n];
-                  currentDay.minutes += 50/60
-                    console.log(currentDay);
-                saveData(tempValue);
+                //   let tempValue = [...value];
+                //   let currentDay = tempValue[n];
+                //   currentDay.minutes += 50/60
+                // saveData(tempValue);
                 // history.push("/slowtimer");
-                  setValue(
-                      value = tempValue
-                  )
+                //   setValue(
+                //       value = tempValue
+                //   )
               } else {
                   setSeconds(MAXSECONDS);
                   setNumberReps(reps => reps - 1);
@@ -91,20 +95,47 @@ const FastTimer = (
 
         <View style={styles.container}>
             {redirect && <Redirect to='/KegelSlowTimer' />}
+            {redirectHome && <Redirect to='/Progress' />}
+            {redirectGuideKegel && <Redirect to='/GuideKegel' />}
+
 
 
             <View style={styles.paragraph}>
 
                 <View style={styles.headerNav}>
-                    <Text style={styles.home}>
-                        HOME
-                    </Text>
+                    {/*  work on this accessibility */}
+                    <TouchableOpacity
+                    style={styles.home}
+                    onPress={() => {
+                        setRedirectHome({
+                            redirectHome
+                        })
+                    }}
+                    >
+                        <Text>
+                            HOME
+                        </Text>
+                    </TouchableOpacity>
+                   
+
                     <Text style={styles.title}>
                         KEGEL
                     </Text>
-                    <Text style={styles.guideLink}>
+
+                    
+                    <TouchableOpacity
+                    style={styles.guideLink}
+                    onPress={() => {
+                        setRedirectGuideKegel({
+                            redirectGuideKegel
+                        })
+                    }}
+                    >
+                    <Text>
                         GUIDE
                     </Text>
+                    </TouchableOpacity>
+                    
                 </View>
 
                 <Text 
@@ -128,6 +159,7 @@ const FastTimer = (
                 </Text>
 
                 <View style={styles.icons}>
+
                     <TouchableWithoutFeedback
                     style={styles.icon}
                     onPress={toggle}>
@@ -142,9 +174,7 @@ const FastTimer = (
                         setRedirect({
                             redirect
                         })
-                    }}
-                    >
-                        {/* redirect to KegelSlowTimer here */}
+                    }}>
                         <Image 
                         source={NextImage}
                         />

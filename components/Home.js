@@ -15,7 +15,8 @@ import ProgressChart from '../components/ProgressChart';
         constructor(props) {
             super(props);
             this.state = {
-                redirect: false
+                redirect: false,
+                guideRedirect: false
             }
         }
 
@@ -24,15 +25,26 @@ import ProgressChart from '../components/ProgressChart';
             return(
                 <View style={styles.container}>
                     {this.state.redirect && <Redirect to='/ChooseExercise' />}
+                    {this.state.guideRedirect && <Redirect to='/GuidePelvic' />}
+
 
                     <View style={styles.headerNav}>
+
                         <Text style={styles.title}>
                             HOME
                         </Text>
-                
+
+                        <TouchableHighlight
+                        onPress={() => {
+                            this.setState({
+                                guideRedirect: true
+                            })
+                        }}>
                         <Text style={styles.guideLink}>
                             GUIDE
                         </Text>
+                        </TouchableHighlight>
+
                     </View>
 
                     <View style={styles.chartContainer}>
@@ -67,6 +79,8 @@ import ProgressChart from '../components/ProgressChart';
 
         headerNav: {
             flexDirection: 'row',
+            bottom: 140,
+
         },
 
         title: {
@@ -74,7 +88,8 @@ import ProgressChart from '../components/ProgressChart';
             color: '#1c1aa9',
             fontWeight: 'bold',
     
-            bottom: 140,
+            left: 170
+            
         },
 
         guideLink: {
@@ -82,7 +97,7 @@ import ProgressChart from '../components/ProgressChart';
             color: '#1c1aa9',
             fontWeight: 'bold',
     
-            bottom: 140,
+            left: 240
         },
     
 

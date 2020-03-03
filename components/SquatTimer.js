@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {
     Text,
-    Linking,
     View, 
     StyleSheet, 
-    Button, 
     Image,
     TouchableWithoutFeedback, 
     TouchableHighlight, 
@@ -33,6 +31,8 @@ const SquatTimer = (
     const [reps, setNumberReps] = useState(8);
     const [activity, setActivity] = useState('squat');
     const [redirect, setRedirect] = useState(false);
+    const [redirectHome, setRedirectHome] = useState(false);
+    const [redirectGuideSquat, setRedirectGuideSquat] = useState(false);
 
     function toggle() {
         setIsActive(!isActive);
@@ -89,9 +89,47 @@ const SquatTimer = (
     return (
         <SafeAreaView style={styles.container}>
             {redirect && <Redirect to='/Home' />}
+            {redirectHome && <Redirect to='/Home' />}
+            {redirectGuideSquat && <Redirect to='/GuideSquat' />}
 
 
             <View style={styles.paragraph}>
+
+            <View style={styles.headerNav}>
+                <TouchableHighlight
+                    onPress={() => {
+                        setRedirectHome({
+                            redirectHome
+                        })
+                    }}
+                    >
+                        <Text style={styles.home}>
+                            HOME
+                        </Text>
+                    </TouchableHighlight>
+
+
+                    <Text style={styles.title}>
+                        SQUAT
+                    </Text>
+
+
+                    <TouchableHighlight
+                    onPress={() => {
+                        setRedirectGuideSquat({
+                            redirectGuideSquat
+                        })
+                    }}
+                    >
+                    <Text style={styles.guideLink}>
+                        GUIDE
+                    </Text>
+                    </TouchableHighlight>
+                </View>
+
+
+
+
                 <Text 
                 style={styles.text}>
                     {activity}
@@ -112,6 +150,7 @@ const SquatTimer = (
                     {reps} reps to go
                 </Text>
 
+                <View style={styles.icons}>
                     <TouchableWithoutFeedback
                     onPress={toggle}>
                         <Image 
@@ -119,11 +158,8 @@ const SquatTimer = (
                         />
                     </TouchableWithoutFeedback>
 
-                    {/* <TouchableHighlight>
-                        <Image 
-                        source={NextImage}
-                        />
-                    </TouchableHighlight> */}
+                </View>
+
                 
             </View>
             </SafeAreaView>
@@ -151,18 +187,56 @@ const styles= StyleSheet.create({
         alignItems: 'center',
       },
 
-      text: {
+    headerNav: {
+        flexDirection: 'row',
+    },
+
+    home: {
+        fontSize: 24, 
+        color: '#1c1aa9',
+        fontWeight: 'bold',
+
+        bottom: 140,
+        right: 65,
+    },
+
+    title: {
+        fontSize: 24, 
+        color: '#1c1aa9',
+        fontWeight: 'bold',
+
+        bottom: 140,
+    },
+
+    guideLink: {
+        fontSize: 24, 
+        color: '#1c1aa9',
+        fontWeight: 'bold',
+
+        bottom: 140,
+        left: 65,
+    },
+
+    text: {
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',
       },
 
 
-      textSeconds: {
+    textSeconds: {
         fontSize: 48,
         color: 'white',
         fontWeight: 'bold',
+
+        left: 85, 
+        top: 70,
       }, 
+
+    icons: {
+        flexDirection: 'row',
+        top: 140
+    },
 
 
     circleTimerSqueeze: {

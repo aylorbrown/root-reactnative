@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {
     Text,
-    Linking,
     View, 
     StyleSheet, 
-    Button, 
     Image,
     TouchableWithoutFeedback, 
     TouchableHighlight
@@ -33,6 +31,8 @@ const SlowTimer = (
     const [reps, setNumberReps] = useState(5);
     const [activity, setActivity] = useState('squeeze');
     const [redirect, setRedirect] = useState(false);
+    const [redirectHome, setRedirectHome] = useState(false);
+    const [redirectGuideKegel, setRedirectGuideKegel] = useState(false);
     // let history = useHistory();
 
     function toggle() {
@@ -51,15 +51,15 @@ const SlowTimer = (
                 var d = new Date();
                 var n = d.getDay();
                 //   let tempValue = [...value];
-                // let tempValue = [];
-                //   let currentDay = tempValue[n];
+                let tempValue = [];
+                  let currentDay = tempValue[n];
                 //   currentDay.minutes += 25/60
-                // saveData(tempValue);
+                saveData(tempValue);
                 setRedirect(true);
                 // history.push("/slowtimer");
-                //   setValue(
-                //       value = tempValue
-                //   )
+                  setValue(
+                      value = tempValue
+                  )
               } else {
                   setSeconds(MAXSECONDS);
                   setNumberReps(reps => reps - 1);
@@ -92,21 +92,43 @@ const SlowTimer = (
     return (
 
         <View style={styles.container}>
-            {redirect && <Redirect to='/Home' />}
+            {redirect && <Redirect to='/Progress' />}
+            {redirectHome && <Redirect to='/Progress' />}
+            {redirectGuideKegel && <Redirect to='/GuideKegel' />}
 
 
             <View style={styles.paragraph}>
 
                 <View style={styles.headerNav}>
-                    <Text style={styles.home}>
-                        HOME
-                    </Text>
+                <TouchableHighlight
+                    onPress={() => {
+                        setRedirectHome({
+                            redirectHome
+                        })
+                    }}
+                    >
+                        <Text style={styles.home}>
+                            HOME
+                        </Text>
+                    </TouchableHighlight>
+
+
                     <Text style={styles.title}>
                         KEGEL
                     </Text>
+
+
+                    <TouchableHighlight
+                    onPress={() => {
+                        setRedirectGuideKegel({
+                            redirectGuideKegel
+                        })
+                    }}
+                    >
                     <Text style={styles.guideLink}>
                         GUIDE
                     </Text>
+                    </TouchableHighlight>
                 </View>
 
                 <Text 
