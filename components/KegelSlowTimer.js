@@ -195,7 +195,7 @@ const styles= StyleSheet.create({
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',
-      },
+    },
 
 
     textSeconds: {
