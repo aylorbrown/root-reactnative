@@ -14,32 +14,11 @@ import {
 
 import UserContext from './UserContext';
 
-const data = [
-    { day: 'Mon', minutes: 5 },
-    { day: 'Tues', minutes: 1.5 },
-    { day: 'Wed', minutes: 3 },
-    { day: 'Thur', minutes:  2},
-    { day: 'Fri', minutes:  2},
-    { day: 'Sat', minutes:  2},
-    { day: 'Sun', minutes:  2},
-  ];
-
-const data1 = [
-    { day: 'Mon', minutes: 2 },
-    { day: 'Tues', minutes: 1 },
-    { day: 'Wed', minutes: 1.25 },
-    { day: 'Thur', minutes: .25 },
-    { day: 'Fri', minutes:  1 },
-    { day: 'Sat', minutes: 1.75},
-    { day: 'Sun', minutes: 3 },
-  ];
-
-
 
 export default function ProgressChart() {
-  // const {value} = useContext(UserContext);
-
-
+  const {kegelData, squatData} = useContext(UserContext);
+  console.log('we are in progress chart');
+  console.log(kegelData);
     return (
       <View style={{ display: "flex", flexWrap: "wrap" }}>
 
@@ -60,7 +39,6 @@ export default function ProgressChart() {
         }}
         tickValues={[1, 2, 3, 4, 5, 6, 7]}
         tickFormat={['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']}
-      
         />
 
         <VictoryStack
@@ -69,14 +47,14 @@ export default function ProgressChart() {
 
         {/* kegel bar */}
         <VictoryBar 
-        // data={value}
-        data={data}
+        data={kegelData}
+        // data={data}
         barWidth={40}
         style={{ 
           data: { fill: "#1c1aa9" },
           labels: {fill: "white"}
         }}
-        labels={({ datum }) => datum.minutes}
+        labels={({ datum }) => datum.minutes == 0 ? '' : datum.minutes}
         labelComponent={<VictoryLabel dy={30}/>}
         x={'day'}
         y={'minutes'}
@@ -84,25 +62,21 @@ export default function ProgressChart() {
 
         {/* squat bar */}
         <VictoryBar 
-        // data={value}
-        data={data1}
+        data={squatData}
+        // data={data1}
         barWidth={40}
         style={{ 
           data: { fill: "#33c18b" },
           labels: { fill: "white"}
         }}
-        labels={({ datum }) => datum.minutes}
+        labels={({ datum }) => datum.minutes == 0 ? '' : datum.minutes}
         labelComponent={<VictoryLabel dy={20}/>}
         x={'day'}
         y={'minutes'}
         />
 
       </VictoryStack>
-
         </VictoryChart>
-
-        {/* a start button here */}
-
       </View>
     );
 }

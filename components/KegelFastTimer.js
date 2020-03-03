@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
     Text,
-    Linking,
     View, 
     StyleSheet, 
-    Button, 
     Image,
     TouchableWithoutFeedback, 
     TouchableHighlight,
@@ -19,15 +17,12 @@ import NextImage from '../assets/next.png'
 
 import StartCircle from './StartCircle';
 
+import UserContext from './UserContext';
 
 
-const FastTimer = (
-    {
-    value,
-    setValue, 
-    saveData
-    }
-)  => {
+
+
+const FastTimer = ()  => {
     const MAXSECONDS = 5;
     const [seconds, setSeconds] = useState(MAXSECONDS);
     const [isActive, setIsActive] = useState(false);
@@ -36,9 +31,11 @@ const FastTimer = (
     const [redirect, setRedirect] = useState(false);
     const [redirectHome, setRedirectHome] = useState(false);
     const [redirectGuideKegel, setRedirectGuideKegel] = useState(false);
-
-
-    // let history = useHistory();
+    const {
+        kegelData,
+        setKegelData, 
+        // saveData
+        } = useContext(UserContext);
 
     function toggle() {
         setIsActive(!isActive);
@@ -53,15 +50,13 @@ const FastTimer = (
               if (reps ==0) {
                 // to get day of week 
                 var d = new Date();
-                var n = d.getDay();//5
-                //   let tempValue = [...value];
-                //   let currentDay = tempValue[n];
-                //   currentDay.minutes += 50/60
+                var n = d.getDay() -1;
+                  let tempValue = [...kegelData];
+                  let currentDay = tempValue[n];
+                  currentDay.minutes += Math.round((50/60) * 100) / 100
                 // saveData(tempValue);
-                // history.push("/slowtimer");
-                //   setValue(
-                //       value = tempValue
-                //   )
+                setRedirect(true);
+                  setKegelData(tempValue);
               } else {
                   setSeconds(MAXSECONDS);
                   setNumberReps(reps => reps - 1);
@@ -95,7 +90,7 @@ const FastTimer = (
 
         <View style={styles.container}>
             {redirect && <Redirect to='/KegelSlowTimer' />}
-            {redirectHome && <Redirect to='/Progress' />}
+            {redirectHome && <Redirect to='/Home' />}
             {redirectGuideKegel && <Redirect to='/GuideKegel' />}
 
 

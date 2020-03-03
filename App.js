@@ -22,38 +22,56 @@ import UserContext from './components/UserContext';
 
 
 export default function AppRouter() {
-  const [value, setValue] = useState(
+  const [kegelData, setKegelData] = useState(
     [
-      {day: 7, minutes: 0},
       {day: 1, minutes: 0},
       {day: 2, minutes: 0},
       {day: 3, minutes: 0},
       {day: 4, minutes: 0},
       {day: 5, minutes: 0},
-      {day: 6, minutes: 0}
+      {day: 6, minutes: 0},
+      {day: 7, minutes: 0}
+    ]
+  );
+  const [squatData, setSquatData] = useState(
+    [
+      {day: 1, minutes: 0},
+      {day: 2, minutes: 0},
+      {day: 3, minutes: 0},
+      {day: 4, minutes: 0},
+      {day: 5, minutes: 0},
+      {day: 6, minutes: 0},
+      {day: 7, minutes: 0}
     ]
   );
 
-  // set state here 
-    // getProvidesAudioData()
-    // .then(data => {
-    //   setValue(data)
-    // })
   return (
-    // <UserContext.Provider
-    // value={{
-    //   value, 
-    //   setValue, 
-    //   saveData
-    // }}
-    // >
+    <UserContext.Provider
+    value={{
+      kegelData, 
+      setKegelData, 
+      squatData,
+      setSquatData
+      // saveData
+    }}
+    >
       
     <NativeRouter>
       <View style={styles.container}>
         <Switch>
           <Route exact path="/" component={Splash} />
           
-          <Route path="/Home" component={Home} />
+          <Route 
+          path="/Home" 
+          component={Home} 
+          value={kegelData, squatData} 
+          />
+
+          <Route 
+          path="/ProgressChart" 
+          component={ProgressChart} 
+          value={kegelData, squatData} 
+          />
         
           <Route path="/GuidePelvic" component={GuidePelvic} />
           
@@ -61,9 +79,19 @@ export default function AppRouter() {
             
           <Route path="/GuideKegel" component={GuideKegel} />
            
-          <Route path="/KegelFastTimer" component={KegelFastTimer} />
+          <Route 
+          path="/KegelFastTimer" 
+          component={KegelFastTimer} 
+          value={kegelData, squatData}
+          setValue={setKegelData, setSquatData}
+          />
           
-          <Route path="/KegelSlowTimer" component={KegelSlowTimer} />
+          <Route 
+          path="/KegelSlowTimer" 
+          component={KegelSlowTimer} 
+          value={kegelData, squatData}
+          setValue={setKegelData, setSquatData}
+          />
            
           <Route path="/GuideSquat" component={GuideSquat} />
            
@@ -72,7 +100,7 @@ export default function AppRouter() {
         </Switch>
       </View>
     </NativeRouter>
-    // </UserContext.Provider>
+    </UserContext.Provider>
     
       // <KegelSlowTimer
       // value={[]}

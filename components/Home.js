@@ -1,5 +1,5 @@
 // import progress chart here 
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import { 
     StyleSheet, 
     View,
@@ -9,6 +9,9 @@ import Constants from 'expo-constants';
 import { Redirect } from 'react-router-native';
 
 import ProgressChart from '../components/ProgressChart';
+import UserContext from './UserContext';
+
+// const {kegelData, squatData} = useContext(UserContext);
 
 
     export default class Home extends Component {
@@ -21,7 +24,7 @@ import ProgressChart from '../components/ProgressChart';
         }
 
         render() {
-
+            // console.log(kegelData)
             return(
                 <View style={styles.container}>
                     {this.state.redirect && <Redirect to='/ChooseExercise' />}
@@ -35,12 +38,13 @@ import ProgressChart from '../components/ProgressChart';
                         </Text>
 
                         <TouchableHighlight
+                        style={styles.guideLink}
                         onPress={() => {
                             this.setState({
                                 guideRedirect: true
                             })
                         }}>
-                        <Text style={styles.guideLink}>
+                        <Text>
                             GUIDE
                         </Text>
                         </TouchableHighlight>

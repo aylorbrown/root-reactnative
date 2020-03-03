@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
     Text,
     View, 
@@ -16,15 +16,12 @@ import StartImage from '../assets/start.png';
 
 import StartCircle from './StartCircle';
 
+import UserContext from './UserContext';
 
 
-const SquatTimer = (
-    {
-    value,
-    setValue, 
-    saveData
-    }
-)  => {
+
+
+const SquatTimer = ()  => {
     const MAXSECONDS = 5;
     const [seconds, setSeconds] = useState(MAXSECONDS);
     const [isActive, setIsActive] = useState(false);
@@ -33,6 +30,11 @@ const SquatTimer = (
     const [redirect, setRedirect] = useState(false);
     const [redirectHome, setRedirectHome] = useState(false);
     const [redirectGuideSquat, setRedirectGuideSquat] = useState(false);
+    const {
+        squatData,
+        setSquatData, 
+        // saveData
+        } = useContext(UserContext);
 
     function toggle() {
         setIsActive(!isActive);
@@ -47,16 +49,15 @@ const SquatTimer = (
               if (reps ==0) {
                 // to get day of week 
                 var d = new Date();
-                var n = d.getDay();//5
+                var n = d.getDay() -1;
                 //   let tempValue = [...value];
-                //   let currentDay = tempValue[n];
+                let tempValue = [...squatData];
+                  let currentDay = tempValue[n];
+                  currentDay.minutes += Math.round((40/60) * 100) / 100
                 //   currentDay.minutes += 50/60
                 // saveData(tempValue);
                 setRedirect(true);
-                // history.push("/slowtimer");
-                //   setValue(
-                //       value = tempValue
-                //   )
+                setSquatData(tempValue);
               } else {
                   setSeconds(MAXSECONDS);
                   setNumberReps(reps => reps - 1);
@@ -97,13 +98,14 @@ const SquatTimer = (
 
             <View style={styles.headerNav}>
                 <TouchableHighlight
+                    style={styles.home}
                     onPress={() => {
                         setRedirectHome({
                             redirectHome
                         })
                     }}
                     >
-                        <Text style={styles.home}>
+                        <Text>
                             HOME
                         </Text>
                     </TouchableHighlight>
@@ -115,13 +117,14 @@ const SquatTimer = (
 
 
                     <TouchableHighlight
+                    style={styles.guideLink}
                     onPress={() => {
                         setRedirectGuideSquat({
                             redirectGuideSquat
                         })
                     }}
                     >
-                    <Text style={styles.guideLink}>
+                    <Text>
                         GUIDE
                     </Text>
                     </TouchableHighlight>

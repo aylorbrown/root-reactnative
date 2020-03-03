@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
     Text,
     View, 
@@ -16,15 +16,10 @@ import StartImage from '../assets/start.png';
 
 import StartCircle from './StartCircle';
 
+import UserContext from './UserContext';
 
 
-const SlowTimer = (
-    {
-    value,
-    setValue, 
-    saveData
-    }
-)  => {
+const SlowTimer = ()  => {
     const MAXSECONDS = 1;
     const [seconds, setSeconds] = useState(MAXSECONDS);
     const [isActive, setIsActive] = useState(false);
@@ -33,7 +28,11 @@ const SlowTimer = (
     const [redirect, setRedirect] = useState(false);
     const [redirectHome, setRedirectHome] = useState(false);
     const [redirectGuideKegel, setRedirectGuideKegel] = useState(false);
-    // let history = useHistory();
+    const {
+        kegelData,
+        setKegelData, 
+        // saveData
+     } = useContext(UserContext);
 
     function toggle() {
         setIsActive(!isActive);
@@ -49,17 +48,17 @@ const SlowTimer = (
               if (reps ==0) {
                 // to get day of week 
                 var d = new Date();
-                var n = d.getDay();
+                var n = d.getDay() -1;
                 //   let tempValue = [...value];
-                let tempValue = [];
+                let tempValue = [...kegelData];
                   let currentDay = tempValue[n];
-                //   currentDay.minutes += 25/60
-                saveData(tempValue);
+                  currentDay.minutes += Math.round((25/60) * 100) / 100
+                //   console.log(currentDay);
+                // saveData(tempValue);
                 setRedirect(true);
-                // history.push("/slowtimer");
-                  setValue(
-                      value = tempValue
-                  )
+                //   setKegelData(tempValue)
+                setKegelData(tempValue);
+
               } else {
                   setSeconds(MAXSECONDS);
                   setNumberReps(reps => reps - 1);
@@ -92,8 +91,8 @@ const SlowTimer = (
     return (
 
         <View style={styles.container}>
-            {redirect && <Redirect to='/Progress' />}
-            {redirectHome && <Redirect to='/Progress' />}
+            {redirect && <Redirect to='/Home' />}
+            {redirectHome && <Redirect to='/Home' />}
             {redirectGuideKegel && <Redirect to='/GuideKegel' />}
 
 
@@ -101,13 +100,14 @@ const SlowTimer = (
 
                 <View style={styles.headerNav}>
                 <TouchableHighlight
+                    style={styles.home}
                     onPress={() => {
                         setRedirectHome({
                             redirectHome
                         })
                     }}
                     >
-                        <Text style={styles.home}>
+                        <Text>
                             HOME
                         </Text>
                     </TouchableHighlight>
@@ -119,13 +119,14 @@ const SlowTimer = (
 
 
                     <TouchableHighlight
+                    style={styles.guideLink}
                     onPress={() => {
                         setRedirectGuideKegel({
                             redirectGuideKegel
                         })
                     }}
                     >
-                    <Text style={styles.guideLink}>
+                    <Text>
                         GUIDE
                     </Text>
                     </TouchableHighlight>
