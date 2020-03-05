@@ -44,7 +44,7 @@ import UserContext from './UserContext';
                                 guideRedirect: true
                             })
                         }}>
-                        <Text>
+                        <Text style={styles.guideText}>
                             GUIDE
                         </Text>
                         </TouchableHighlight>
@@ -97,11 +97,13 @@ import UserContext from './UserContext';
         },
 
         guideLink: {
+            left: 240
+        },
+
+        guideText: {
             fontSize: 24, 
             color: '#1c1aa9',
             fontWeight: 'bold',
-    
-            left: 240
         },
     
 

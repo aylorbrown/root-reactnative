@@ -5,7 +5,8 @@ import {
     StyleSheet, 
     Image,
     TouchableWithoutFeedback, 
-    TouchableHighlight
+    TouchableHighlight, 
+    Vibration
 } from 'react-native';
 import Constants from 'expo-constants';
 import { Redirect } from 'react-router-native';
@@ -13,11 +14,14 @@ import { Redirect } from 'react-router-native';
 
 import PauseImage from '../assets/pause.png';
 import StartImage from '../assets/start.png';
+import NextImage from '../assets/next.png'
+
 
 import StartCircle from './StartCircle';
-
 import UserContext from './UserContext';
 
+
+const DURATION = 1000;
 
 const SlowTimer = ()  => {
     const MAXSECONDS = 1;
@@ -45,7 +49,9 @@ const SlowTimer = ()  => {
 
       let countDown = () => {
           if (seconds ==0){
+            Vibration.vibrate(DURATION);
               if (reps ==0) {
+                Vibration.cancel();
                 // to get day of week 
                 var d = new Date();
                 var n = d.getDay() -1;
@@ -107,7 +113,7 @@ const SlowTimer = ()  => {
                         })
                     }}
                     >
-                        <Text>
+                        <Text style={styles.homeText}>
                             HOME
                         </Text>
                     </TouchableHighlight>
@@ -126,7 +132,7 @@ const SlowTimer = ()  => {
                         })
                     }}
                     >
-                    <Text>
+                    <Text style={styles.guideText}>
                         GUIDE
                     </Text>
                     </TouchableHighlight>
@@ -152,16 +158,32 @@ const SlowTimer = ()  => {
                     {reps} reps to go
                 </Text>
 
+
                 <View style={styles.icons}>
+
                 <TouchableWithoutFeedback
                     onPress={toggle}>
                         <Image 
                         source={isActive ? PauseImage : StartImage}
                         />
                  </TouchableWithoutFeedback>
+
+                 <TouchableHighlight
+                    style={styles.icon}
+                    onPress={() => {
+                        setRedirect({
+                            redirect
+                        })
+                    }}>
+                        <Image 
+                        source={NextImage}
+                        />
+                    </TouchableHighlight>
+                    </View>
+
                  </View>
             </View>
-            </View>
+            
     );
 }
 
@@ -189,12 +211,14 @@ const styles= StyleSheet.create({
     },
 
     home: {
+        bottom: 140,
+        right: 65,
+    },
+
+    homeText: {
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',
-
-        bottom: 140,
-        right: 65,
     },
 
     title: {
@@ -206,12 +230,14 @@ const styles= StyleSheet.create({
     },
 
     guideLink: {
+        bottom: 140,
+        left: 65,
+    },
+
+    guideText: {
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',
-
-        bottom: 140,
-        left: 65,
     },
 
     text: {
@@ -233,6 +259,10 @@ const styles= StyleSheet.create({
     icons: {
         flexDirection: 'row',
         top: 140
+    },
+
+    icon: {
+        paddingStart: 40,
     },
 
 

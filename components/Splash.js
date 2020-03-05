@@ -24,10 +24,7 @@ export default class Splash extends React.Component {
     const trans = dragX.interpolate({
       inputRange: [0, 100],
       outputRange: [0, 1],
-    
     });
-
-
 
     return (
       <RectButton style={styles.leftAction} onPress={console.log('Pressed')}>
@@ -38,7 +35,7 @@ export default class Splash extends React.Component {
               transform: [{ translateX: trans }],
             },
           ]}>
-          Swiped
+          <Text style={styles.swipeText}>START</Text>
         </Animated.Text>
       </RectButton>
     );
@@ -71,8 +68,6 @@ export default class Splash extends React.Component {
   }
 }
 
-// .then{this.state.redirect && <Redirect to='/GuidePelvic' />}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -88,6 +83,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  swipeText: {
+    color: '#fc715e'
+  }
+   
 });
 
 

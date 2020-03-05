@@ -6,7 +6,8 @@ import {
     Image,
     TouchableWithoutFeedback, 
     TouchableHighlight,
-    TouchableOpacity
+    TouchableOpacity, 
+    Vibration
 } from 'react-native';
 import Constants from 'expo-constants';
 import { Redirect } from 'react-router-native';
@@ -20,7 +21,7 @@ import StartCircle from './StartCircle';
 import UserContext from './UserContext';
 
 
-
+const DURATION = 1000;
 
 const FastTimer = ()  => {
     const MAXSECONDS = 5;
@@ -47,13 +48,15 @@ const FastTimer = ()  => {
 
       let countDown = () => {
           if (seconds ==1){
+              Vibration.vibrate(DURATION);
               if (reps ==0) {
+                  Vibration.cancel();
                 // to get day of week 
                 var d = new Date();
                 var n = d.getDay() -1;
                   let tempValue = [...kegelData];
                   let currentDay = tempValue[n];
-                  currentDay.minutes += Math.round((50/60) * 100) / 100
+                  currentDay.minutes += Math.round((100/60) * 100) / 100
                 // saveData(tempValue);
                 setRedirect(true);
                   setKegelData(tempValue);
@@ -107,7 +110,7 @@ const FastTimer = ()  => {
                         })
                     }}
                     >
-                        <Text>
+                        <Text style={styles.homeText}>
                             HOME
                         </Text>
                     </TouchableOpacity>
@@ -126,7 +129,7 @@ const FastTimer = ()  => {
                         })
                     }}
                     >
-                    <Text>
+                    <Text style={styles.guideText}>
                         GUIDE
                     </Text>
                     </TouchableOpacity>
@@ -204,13 +207,15 @@ const styles= StyleSheet.create({
     },
 
     home: {
-        fontSize: 24, 
-        color: '#1c1aa9',
-        fontWeight: 'bold',
-
         bottom: 140,
         right: 65
       },
+
+    homeText: {
+        fontSize: 24, 
+        color: '#1c1aa9',
+        fontWeight: 'bold',
+    },
 
     title: {
         fontSize: 24, 
@@ -221,12 +226,14 @@ const styles= StyleSheet.create({
       },
 
     guideLink: {
+        bottom: 140,
+        left: 65,
+    },
+
+    guideText: {
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',
-
-        bottom: 140,
-        left: 65,
     },
 
     textSeconds: {

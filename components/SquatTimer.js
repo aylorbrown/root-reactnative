@@ -6,19 +6,23 @@ import {
     Image,
     TouchableWithoutFeedback, 
     TouchableHighlight, 
-    SafeAreaView
+    SafeAreaView, 
+    Vibration
 } from 'react-native';
 import Constants from 'expo-constants';
 import { Redirect } from 'react-router-native';
 
 import PauseImage from '../assets/pause.png';
 import StartImage from '../assets/start.png';
+import NextImage from '../assets/next.png'
+
 
 import StartCircle from './StartCircle';
 
 import UserContext from './UserContext';
 
 
+const DURATION = 1000;
 
 
 const SquatTimer = ()  => {
@@ -46,14 +50,16 @@ const SquatTimer = ()  => {
 
       let countDown = () => {
           if (seconds ==1){
+            Vibration.vibrate(DURATION);
               if (reps ==0) {
+                Vibration.cancel();
                 // to get day of week 
                 var d = new Date();
                 var n = d.getDay() -1;
                 //   let tempValue = [...value];
                 let tempValue = [...squatData];
                   let currentDay = tempValue[n];
-                  currentDay.minutes += Math.round((40/60) * 100) / 100
+                  currentDay.minutes += Math.round((80/60) * 100) / 100
                 //   currentDay.minutes += 50/60
                 // saveData(tempValue);
                 setRedirect(true);
@@ -103,35 +109,29 @@ const SquatTimer = ()  => {
                         setRedirectHome({
                             redirectHome
                         })
-                    }}
-                    >
-                        <Text>
-                            HOME
-                        </Text>
-                    </TouchableHighlight>
-
+                }}>
+                    <Text style={styles.homeText}>
+                        HOME
+                    </Text>
+                </TouchableHighlight>
 
                     <Text style={styles.title}>
                         SQUAT
                     </Text>
 
 
-                    <TouchableHighlight
+                <TouchableHighlight
                     style={styles.guideLink}
                     onPress={() => {
                         setRedirectGuideSquat({
                             redirectGuideSquat
                         })
-                    }}
-                    >
-                    <Text>
+                }}>
+                    <Text style={styles.guideText}>
                         GUIDE
                     </Text>
-                    </TouchableHighlight>
+                </TouchableHighlight>
                 </View>
-
-
-
 
                 <Text 
                 style={styles.text}>
@@ -155,11 +155,24 @@ const SquatTimer = ()  => {
 
                 <View style={styles.icons}>
                     <TouchableWithoutFeedback
+                    style={styles.icon}
                     onPress={toggle}>
                         <Image 
                         source={isActive ? PauseImage : StartImage}
                         />
                     </TouchableWithoutFeedback>
+
+                    <TouchableHighlight
+                    style={styles.icon}
+                    onPress={() => {
+                        setRedirect({
+                            redirect
+                        })
+                    }}>
+                        <Image 
+                        source={NextImage}
+                        />
+                    </TouchableHighlight>
 
                 </View>
 
@@ -181,50 +194,55 @@ const styles= StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         padding: 8,
+        width: '100%'
     },
     
     paragraph: {
         margin: 48,
         textAlign: 'center',
         justifyContent: 'center',
-        alignItems: 'center',
-      },
+        alignItems: 'center'
+    },
 
     headerNav: {
-        flexDirection: 'row',
+        flexDirection: 'row'
     },
 
     home: {
+        bottom: 140,
+        right: 65
+    },
+
+    homeText: {
         fontSize: 24, 
         color: '#1c1aa9',
-        fontWeight: 'bold',
-
-        bottom: 140,
-        right: 65,
-    },
+        fontWeight: 'bold'
+    }, 
 
     title: {
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',
 
-        bottom: 140,
+        bottom: 140
     },
 
     guideLink: {
+        bottom: 140,
+        left: 65
+    },
+
+    guideText: {
         fontSize: 24, 
         color: '#1c1aa9',
-        fontWeight: 'bold',
-
-        bottom: 140,
-        left: 65,
+        fontWeight: 'bold'
     },
 
     text: {
         fontSize: 24, 
         color: '#1c1aa9',
-        fontWeight: 'bold',
-      },
+        fontWeight: 'bold'
+    },
 
 
     textSeconds: {
@@ -233,12 +251,16 @@ const styles= StyleSheet.create({
         fontWeight: 'bold',
 
         left: 85, 
-        top: 70,
-      }, 
+        top: 70
+    }, 
 
     icons: {
         flexDirection: 'row',
         top: 140
+    },
+
+    icon: {
+        paddingStart: 40
     },
 
 
@@ -270,13 +292,13 @@ const styles= StyleSheet.create({
         backgroundColor: '#fc715e',
         borderWidth: 1,
         borderColor: '#fc715e',
-      },
+    },
       
     inactive: {
         backgroundColor: '#fc715e',
         borderWidth: 1,
         borderColor: '#fc715e',
-      }
+    }
 
 
 

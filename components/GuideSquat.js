@@ -39,7 +39,7 @@ export default class GuideSquat extends React.Component {
                   transform: [{ translateX: trans }],
                 },
               ]}>
-              Swiped
+              <Text style={styles.textSwiped}>Swiped</Text>
             </Animated.Text>
           </RectButton>
         );
@@ -54,17 +54,13 @@ export default class GuideSquat extends React.Component {
                 <ScrollView style={styles.scrollView}>
     
                 <Text style={styles.text}>
-                The pelvic floor is a group of muscles that attaches to the bones at the bottom of your pelvis. These muscles effectively form a hammock across the base of your pelvis that supports the internal organs above it. Having strong pelvic floor muscles give you proper control over our bladder and bowels, improve sexual performance and orgasm, help stabilize the hip joints, and act as a lymphatic pump for the pelvis. 
+                Stand with your feet slightly wider than your hips, toes pointed slightly outward. Keep your spine in a neutral position - don't round you back, and don't over accentuate the natural arch of your back. Balance your weight on the heels and balls of your feet.  
                 </Text>
                 
                 <Text style={styles.text}>
-                In Eastern traditions, the pelvic floor is known as the root chakra - it's where we tend to literally "hold" fears, specifically fears around primary instincts such as our health, our family's safety, and our financial security. It is a "stress container," in that it's where we process the emotion and house our fight or flight reactions. 
+                With your hands in the prayer position and taking a deep breath, being sending your hips backwards as your knees begin to bend. Keep your back straight, and your chest and shoulders up. Be sure to keep your knees directly in line with your feet as you squat. Continue lowering your hips until they are slightly lower than your knees to perform a deep squat. Use your core to push yourself back up, keeping your weight in your heels. 
                 </Text>
-    
-                <Text style={styles.text}>
-                When we lose the connection to those deep muscles, it becomes difficult to relax the area, meaning the pelvic floor becomes perma-flexed. Imagine flexing your bicep constantly and never fully letting go and you get the idea: After a while, this would cause your arm to lose flexibility, strength, and the ability to relax. That's more or less what happens to the pelvic floor until you become aware of the stress and tension and do some work to alleviate it. Part of this is willfully relaxing and unclenching these muscles - and then directing energy to build strength. 
-                </Text>
-    
+
                 <Swipeable
                 renderRightActions={this.renderRightActions}
                 onSwipeableRightOpen={() => {
@@ -103,5 +99,9 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 18,
         padding: 30,
+    }, 
+
+    textSwiped: {
+      color: '#33c18b'
     }
   });

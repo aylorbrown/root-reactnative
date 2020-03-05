@@ -48,14 +48,13 @@ export default function ProgressChart() {
         {/* kegel bar */}
         <VictoryBar 
         data={kegelData}
-        // data={data}
         barWidth={40}
         style={{ 
           data: { fill: "#1c1aa9" },
           labels: {fill: "white"}
         }}
         labels={({ datum }) => datum.minutes == 0 ? '' : datum.minutes}
-        labelComponent={<VictoryLabel dy={30}/>}
+        labelComponent={<VictoryLabel dy={20}/>}
         x={'day'}
         y={'minutes'}
         />

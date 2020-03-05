@@ -37,7 +37,7 @@ export default class GuideKegel extends React.Component {
                     transform: [{ translateX: trans }],
                   },
                 ]}>
-                Swiped
+                <Text style={styles.swipedText}>Swiped</Text>
               </Animated.Text>
             </RectButton>
           );
@@ -101,5 +101,9 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 18,
         padding: 30,
+    }, 
+
+    swipedText: {
+      color: '#fc715e'
     }
   });
