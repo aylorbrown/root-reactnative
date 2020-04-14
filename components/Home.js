@@ -88,6 +88,7 @@ import UserContext from './UserContext';
         },
 
         title: {
+            fontFamily: 'Gopher-regular',
             fontSize: 24, 
             color: '#1c1aa9',
             fontWeight: 'bold',
@@ -101,6 +102,7 @@ import UserContext from './UserContext';
         },
 
         guideText: {
+            fontFamily: 'Gopher-regular',
             fontSize: 24, 
             color: '#1c1aa9',
             fontWeight: 'bold',
@@ -121,6 +123,7 @@ import UserContext from './UserContext';
           },
         
         buttonText: {
+            fontFamily: 'Gopher-regular',
             color: '#1c1aa9',
             fontWeight: 'bold',
             fontSize: 24

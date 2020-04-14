@@ -51,6 +51,10 @@ export default class GuidePelvis extends React.Component {
             {this.state.redirect && <Redirect to='/ChooseExercise'/>}
             <ScrollView style={styles.scrollView}>
 
+            <Text style={styles.paragraph}>
+            ROOT
+            </Text>
+
             <Text style={styles.text}>
             The pelvic floor is a group of muscles that attaches to the bones at the bottom of your pelvis. These muscles form a hammock across the base of the pelvis that supports the internal organs above it. Having strong and flexible pelvic floor muscles gives you proper control over your bladder and bowels, improve sexual performance and orgasm, help stabilize the hip joints, and act as a lymphatic pump for the pelvis. 
             </Text>
@@ -71,11 +75,6 @@ export default class GuidePelvis extends React.Component {
             Use ROOT to incorporate pelvic floor exercises into your life until they become second nature. 
             </Text>
 
-            <Text style={styles.text}>
-            While this app was created to improve the physical and emotional well-being of people with vaginas, please note that all of the tools and information will still apply to you, regardless of gender. :)  
-            </Text>
-
-
           <Swipeable
           renderRightActions={this.renderRightActions}
           onSwipeableRightOpen={() => {
@@ -85,6 +84,10 @@ export default class GuidePelvis extends React.Component {
           }}>
           <SpringCircleGuide />
           </Swipeable>
+
+          <Text style={styles.text}>
+            While this app was created to improve the physical and emotional well-being of people with vaginas, please note that all of the tools and information will still apply to you, regardless of gender. 
+            </Text>
 
           </ScrollView>
         </SafeAreaView>
@@ -107,10 +110,20 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
     },
 
+    paragraph: {
+      fontFamily: 'SuezOne-regular',
+      margin: 24,
+      fontSize: 48,
+      color: '#1c1aa9',
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+
     text: {
+        fontFamily: 'Gopher-regular',
         textAlign: 'justify',
         color: '#1c1aa9',
-        fontWeight: '600',
+        fontWeight: '900',
         fontSize: 18,
         padding: 30,
     }, 

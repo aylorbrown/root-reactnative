@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
+import { StyleSheet, View } from 'react-native';
 import {
   NativeRouter, 
   Switch, 
@@ -14,12 +16,70 @@ import KegelFastTimer from './components/KegelFastTimer';
 import KegelSlowTimer from './components/KegelSlowTimer';
 import GuideSquat from './components/GuideSquat';
 import SquatTimer from './components/SquatTimer';
-
-
-import SpringCircle from './components/SpringCircle';
 import ProgressChart from './components/ProgressChart';
+
 import UserContext from './components/UserContext';
 
+import axios from 'axios';
+const apiKey = "e5e8ae85-18a9-4c69-b321-f8a2068a7100";
+
+console.disableYellowBox = true;
+
+function getToken () {
+  return axios({
+    //
+    url:'https://jsonbin.org/_/bearer',
+    headers: {
+      authorization: `token ${apiKey}`
+    }
+  }).then( resp => {
+    // console.log(resp.data);
+    // console.log('hello! hcxjhsdknsjdk  hfdskjnsd,jksdnf  hiflsanjkx')
+    return resp.data.token;
+  })
+}
+
+function saveData (dataToSave) {
+  // get the token from getToken 
+  // make an axios POST 
+  // in axios post, send data to save 
+  getToken()
+  .then(token => {
+    // make the axios post 
+    axios({
+      url: 'https://cors-anywhere.herokuapp.com/http://jsonbin.org/aylorbrown/kegel', 
+      method: 'POST', 
+      headers: {
+        authorization: `Bearer ${token}` 
+      }, 
+      data: dataToSave
+    });
+  });
+}
+
+function getData () {
+  return getToken()
+  .then(token => {
+    //
+    return axios({
+      url: 'https://cors-anywhere.herokuapp.com/http://jsonbin.org/aylorbrown/kegel',
+      headers: {
+        authorization: `Bearer ${token}` 
+      }
+    })
+  })
+  .then(resp => {
+    // console.log('Got data!');
+    return resp.data
+
+  })
+}
+
+const getFonts = () => Font.loadAsync({
+    'SuezOne-regular': require('./assets/fonts/SuezOne-Regular.ttf'), 
+    'Gopher-regular': require('./assets/fonts/Gopher.ttf'), 
+    'ApfelGrotezk-regular': require('./assets/fonts/ApfelGrotezk-Regular.otf')
+  });
 
 export default function AppRouter() {
   const [kegelData, setKegelData] = useState(
@@ -45,71 +105,94 @@ export default function AppRouter() {
     ]
   );
 
-  return (
-    <UserContext.Provider
-    value={{
-      kegelData, 
-      setKegelData, 
-      squatData,
-      setSquatData
-      // saveData
-    }}
-    >
+  // getData()
+  //   .then(kegelData, squatData => {
+  //     // console.log('loading data from the API!')
+  //     setKegelData(kegelData), 
+  //     setSquatData(squatData)
+  //   })
+
+
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+  
+  if(fontsLoaded) {
+    return (
+      <UserContext.Provider
+      value={{
+        kegelData, 
+        setKegelData, 
+        squatData,
+        setSquatData,
+        saveData
+      }}
+      >
+
+      <NativeRouter>
+        <View style={styles.container}>
+          <Switch>
+
+            <Route  exact path="/" component={Splash} />
+
+            <Route 
+            path="/Home" 
+            component={Home} 
+            value={kegelData, squatData} 
+            />
+  
+            <Route 
+            path="/ProgressChart" 
+            component={ProgressChart} 
+            value={kegelData, squatData} 
+            />
+          
+            <Route path="/GuidePelvic" component={GuidePelvic} />
+            
+            <Route path="/ChooseExercise" component={ChooseExercise} />
+              
+            <Route path="/GuideKegel" component={GuideKegel} />
+             
+            <Route 
+            path="/KegelFastTimer" 
+            component={KegelFastTimer} 
+            value={kegelData}
+            setKegelData={setKegelData}
+            saveData={saveData}
+            />
+            
+            <Route 
+            path="/KegelSlowTimer" 
+            component={KegelSlowTimer} 
+            value={squatData}
+            setSquatData={setSquatData}
+            saveData={saveData}
+            />
+             
+            <Route path="/GuideSquat" component={GuideSquat} />
+             
+            <Route path="/SquatTimer" component={SquatTimer}  />
+              
+          </Switch>
+        </View>
+      </NativeRouter>
+      </UserContext.Provider>
       
-    <NativeRouter>
-      <View style={styles.container}>
-        <Switch>
-          <Route exact path="/" component={Splash} />
-          
-          <Route 
-          path="/Home" 
-          component={Home} 
-          value={kegelData, squatData} 
-          />
+        // <KegelSlowTimer
+        // value={[]}
+        // />
+  
+        // <SquatTimer 
+        // value={[]}
+        // />
+    );
+  } else {
+    return (
 
-          <Route 
-          path="/ProgressChart" 
-          component={ProgressChart} 
-          value={kegelData, squatData} 
-          />
-        
-          <Route path="/GuidePelvic" component={GuidePelvic} />
-          
-          <Route path="/ChooseExercise" component={ChooseExercise} />
-            
-          <Route path="/GuideKegel" component={GuideKegel} />
-           
-          <Route 
-          path="/KegelFastTimer" 
-          component={KegelFastTimer} 
-          value={kegelData, squatData}
-          setValue={setKegelData, setSquatData}
-          />
-          
-          <Route 
-          path="/KegelSlowTimer" 
-          component={KegelSlowTimer} 
-          value={kegelData, squatData}
-          setValue={setKegelData, setSquatData}
-          />
-           
-          <Route path="/GuideSquat" component={GuideSquat} />
-           
-          <Route path="/SquatTimer" component={SquatTimer}  />
-            
-        </Switch>
-      </View>
-    </NativeRouter>
-    </UserContext.Provider>
-    
-      // <KegelSlowTimer
-      // value={[]}
-      // />
-
-      // <SquatTimer 
-      // value={[]}
-      // />
-  );
+      <AppLoading 
+        startAsync={getFonts}
+        onFinish={() => setFontsLoaded(true)}
+      />
+    )
+  }
 }
 
 const styles = StyleSheet.create({

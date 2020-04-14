@@ -35,7 +35,7 @@ const SlowTimer = ()  => {
     const {
         kegelData,
         setKegelData, 
-        // saveData
+        saveData
      } = useContext(UserContext);
 
     function toggle() {
@@ -60,9 +60,8 @@ const SlowTimer = ()  => {
                   let currentDay = tempValue[n];
                   currentDay.minutes += Math.round((25/60) * 100) / 100
                 //   console.log(currentDay);
-                // saveData(tempValue);
+                saveData(tempValue);
                 setRedirect(true);
-                //   setKegelData(tempValue)
                 setKegelData(tempValue);
 
               } else {
@@ -216,12 +215,14 @@ const styles= StyleSheet.create({
     },
 
     homeText: {
+        fontFamily: 'Gopher-regular',
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',
     },
 
     title: {
+        fontFamily: 'Gopher-regular',
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',
@@ -235,12 +236,14 @@ const styles= StyleSheet.create({
     },
 
     guideText: {
+        fontFamily: 'Gopher-regular',
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',
     },
 
     text: {
+        fontFamily: 'Gopher-regular',
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',
@@ -248,12 +251,12 @@ const styles= StyleSheet.create({
 
 
     textSeconds: {
+        fontFamily: 'Gopher-regular',
         fontSize: 48,
         color: 'white',
-        fontWeight: 'bold',
 
-        left: 85, 
-        top: 70,
+        left: 90, 
+        top: 75,
       }, 
 
     icons: {
@@ -274,6 +277,7 @@ const styles= StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
 
+        fontFamily: 'Gopher-regular',
         fontSize: 36,
         color: '#f8f8ff',
     }, 
@@ -286,6 +290,7 @@ const styles= StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
 
+        fontFamily: 'Gopher-regular',
         fontSize: 36,
         color: '#f8f8ff',
     },

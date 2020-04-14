@@ -11,7 +11,6 @@ import { Redirect } from 'react-router-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { RectButton } from 'react-native-gesture-handler';
 import SpringCircleGuide from './SpringCircleGuide';
-import { render } from 'react-dom';
 
 
 export default class GuideKegel extends React.Component {
@@ -60,7 +59,7 @@ export default class GuideKegel extends React.Component {
                 </Text>
     
                 <Text style={styles.text}>
-                Contrast this move by letting go of the muscles, feeling space between your site bones, and allowing your rose to loom. Feel the base of your core real, and then relax and expand a little more from there until you experience a complete surrender or holding. You will feel your belly relax, your shoulders melt, and your jaw and head release. 
+                Contrast this move by letting go of the muscles, feeling space between your sitz bones, and allowing your rose to bloom. Feel the base of your core real, and then relax and expand a little more from there until you experience a complete surrender or holding. You will feel your belly relax, your shoulders melt, and your jaw and head release. 
                 </Text>
     
                 <Swipeable
@@ -96,6 +95,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
+        fontFamily: 'Gopher-regular',
         textAlign: 'justify',
         color: '#1c1aa9',
         fontWeight: '600',

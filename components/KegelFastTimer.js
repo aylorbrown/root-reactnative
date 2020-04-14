@@ -35,7 +35,7 @@ const FastTimer = ()  => {
     const {
         kegelData,
         setKegelData, 
-        // saveData
+        saveData
         } = useContext(UserContext);
 
     function toggle() {
@@ -57,7 +57,7 @@ const FastTimer = ()  => {
                   let tempValue = [...kegelData];
                   let currentDay = tempValue[n];
                   currentDay.minutes += Math.round((100/60) * 100) / 100
-                // saveData(tempValue);
+                saveData(tempValue);
                 setRedirect(true);
                   setKegelData(tempValue);
               } else {
@@ -212,15 +212,17 @@ const styles= StyleSheet.create({
       },
 
     homeText: {
+        // fontFamily: 'SuezOne-regular',
+        fontFamily: 'Gopher-regular',
         fontSize: 24, 
         color: '#1c1aa9',
-        fontWeight: 'bold',
     },
 
     title: {
+        // fontFamily: 'SuezOne-regular',
+        fontFamily: 'Gopher-regular',
         fontSize: 24, 
         color: '#1c1aa9',
-        fontWeight: 'bold',
 
         bottom: 140
       },
@@ -231,21 +233,24 @@ const styles= StyleSheet.create({
     },
 
     guideText: {
+        // fontFamily: 'SuezOne-regular',
+        fontFamily: 'Gopher-regular',
         fontSize: 24, 
         color: '#1c1aa9',
-        fontWeight: 'bold',
     },
 
     textSeconds: {
+        fontFamily: 'Gopher-regular',
         fontSize: 48,
         color: 'white',
         fontWeight: 'bold',
 
         left: 85, 
-        top: 70,
+        top: 75,
       }, 
     
     text: {
+        fontFamily: 'Gopher-regular',
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',

@@ -37,7 +37,7 @@ const SquatTimer = ()  => {
     const {
         squatData,
         setSquatData, 
-        // saveData
+        saveData
         } = useContext(UserContext);
 
     function toggle() {
@@ -61,16 +61,16 @@ const SquatTimer = ()  => {
                   let currentDay = tempValue[n];
                   currentDay.minutes += Math.round((80/60) * 100) / 100
                 //   currentDay.minutes += 50/60
-                // saveData(tempValue);
+                saveData(tempValue);
                 setRedirect(true);
                 setSquatData(tempValue);
               } else {
                   setSeconds(MAXSECONDS);
                   setNumberReps(reps => reps - 1);
-                  if (activity == 'rest') {
+                  if (activity == 'rise') {
                       setActivity('squat');
                     } else {
-                        setActivity('rest');
+                        setActivity('rise');
                   }
               }
           } else {
@@ -214,12 +214,14 @@ const styles= StyleSheet.create({
     },
 
     homeText: {
+        fontFamily: 'Gopher-regular',
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold'
     }, 
 
     title: {
+        fontFamily: 'Gopher-regular',
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold',
@@ -233,12 +235,14 @@ const styles= StyleSheet.create({
     },
 
     guideText: {
+        fontFamily: 'Gopher-regular',
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold'
     },
 
     text: {
+        fontFamily: 'Gopher-regular',
         fontSize: 24, 
         color: '#1c1aa9',
         fontWeight: 'bold'
@@ -246,6 +250,7 @@ const styles= StyleSheet.create({
 
 
     textSeconds: {
+        fontFamily: 'Gopher-regular',
         fontSize: 48,
         color: 'white',
         fontWeight: 'bold',
@@ -272,11 +277,12 @@ const styles= StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
 
+        fontFamily: 'Gopher-regular',
         fontSize: 36,
         color: '#f8f8ff',
     }, 
 
-    circleTimerRest: {
+    circleTimerRise: {
         height: 150,
         width: 150,
         borderRadius: 150/2,
@@ -284,6 +290,7 @@ const styles= StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
 
+        fontFamily: 'Gopher-regular',
         fontSize: 36,
         color: '#f8f8ff',
     },

@@ -9,8 +9,8 @@ import { Redirect } from 'react-router-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { RectButton } from 'react-native-gesture-handler';
 
-
 import SpringCircle from './SpringCircle';
+
 
 
 export default class Splash extends React.Component {
@@ -20,6 +20,21 @@ export default class Splash extends React.Component {
       redirect: false
     }
   }
+
+  // async test() {
+  //   console.log('hello is this working?')
+  //   let signup = axios.post('http://10.150.30.150:3000/api/signup', {
+  //       first_name: 'Fred',
+  //       password: 'bambam'
+  //   }).then( resp => {
+  //     console.log(resp.data);
+  //     // console.log('hello! hcxjhsdknsjdk  hfdskjnsd,jksdnf  hiflsanjkx')
+  //     return resp.data.token;
+  //   }).catch(err => {
+  //     console.log(err);
+  //   })
+  // }
+
   renderRightActions = (progress, dragX) => {
     const trans = dragX.interpolate({
       inputRange: [0, 100],
@@ -42,6 +57,7 @@ export default class Splash extends React.Component {
   };
 
   render() {
+
     return (
       
       <View style={styles.container}>
@@ -53,6 +69,7 @@ export default class Splash extends React.Component {
         <Swipeable
         renderRightActions={this.renderRightActions}
         onSwipeableRightOpen={() => {
+          // this.test();
           this.setState({
             redirect: true
           })
@@ -70,6 +87,7 @@ export default class Splash extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    width: 900,
     flex: 1,
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
@@ -77,6 +95,7 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   paragraph: {
+    fontFamily: 'SuezOne-regular',
     margin: 48,
     fontSize: 48,
     color: '#1c1aa9',

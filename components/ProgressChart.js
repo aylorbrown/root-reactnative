@@ -27,15 +27,13 @@ export default function ProgressChart() {
           parent: { maxWidth: "100%" }
         }}
         domain={{y: [0, 10]}}
-        // height={600}
-        // width={600}
         containerComponent={<VictoryContainer responsive={false}/>}
         >
 
         <VictoryAxis
         style={{
           axis: {stroke: '#fc715e'}, 
-          tickLabels: {stroke: '#1c1aa9', fontSize: 24}
+          tickLabels: {stroke: '#1c1aa9', fontSize: 24}, 
         }}
         tickValues={[1, 2, 3, 4, 5, 6, 7]}
         tickFormat={['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']}

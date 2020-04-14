@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
+        fontFamily: 'Gopher-regular',
         textAlign: 'justify',
         color: '#1c1aa9',
         fontWeight: '600',

@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { 
     StyleSheet, 
     Text, 
     View, 
     SafeAreaView,
-    Button, 
     TouchableHighlight
 } from 'react-native';
 import { Redirect } from 'react-router-native';
@@ -67,12 +66,13 @@ constructor(props) {
     },
 
     button: {
-        fontSize: 24,
-        fontWeight: '900',
-        color: '#1c1aa9',
+      fontSize: 24,
+      fontWeight: '900',
+      color: '#1c1aa9',
     },
 
     text: {
+        fontFamily: 'SuezOne-regular',
         textAlign: 'center',
         color: '#1c1aa9',
         fontWeight: '900',
@@ -81,6 +81,7 @@ constructor(props) {
     }, 
 
     textButton: {
+      fontFamily: 'Gopher-regular',
       textAlign: 'center',
       color: '#1c1aa9',
       fontWeight: '700',
