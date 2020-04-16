@@ -52,14 +52,32 @@ export default class GuideSquat extends React.Component {
             <SafeAreaView style={styles.container}>
                 {this.state.redirect && <Redirect to='/BellyBreathTimer'/>}
                 <ScrollView style={styles.scrollView}>
+
+                <Text style={styles.paragraph}>
+                BELLY BREATH
+                </Text>
     
                 <Text style={styles.text}>
-                Stand with your feet slightly wider than your hips, toes pointed slightly outward. Keep your spine in a neutral position - don't round you back, and don't over accentuate the natural arch of your back. Balance your weight on the heels and balls of your feet.  
+                Also called diaphragmatic or abdominal breathing, belly breathing is a deep breathing technique that engages your diaphragm, a dome-shaped sheet of muscle at the bottom of your ribcage that is primary responsible for respiratory function. Belly breathing is central to the practice of meditation. We spend much of the day breathing with our chest, neck, and back, taking the time to breathe through our belly can be deeply relaxing. 
                 </Text>
                 
                 <Text style={styles.text}>
-                With your hands in the prayer position and taking a deep breath, being sending your hips backwards as your knees begin to bend. Keep your back straight, and your chest and shoulders up. Be sure to keep your knees directly in line with your feet as you squat. Continue lowering your hips until they are slightly lower than your knees to perform a deep squat. Use your core to push yourself back up, keeping your weight in your heels. 
+                Begin by finding a comfortable seated position, really focusing on relaxing your shoulders and creating space in the back of the neck and spine.
                 </Text>
+
+                <Text style={styles.text}>
+                Put one or two hands on the belly so you can feel the physical connection to the breath. Inhale through the nose and exhale through the mouth. 
+                </Text>
+
+                <Text style={styles.text}>
+                On the inhale, expand the belly. Visualize the air moving into the belly cavity. Feel your lungs expand as the diaphragm moves down into your organs and pelvic floor, expanding the base of your core and releasing blocked energy and tension. 
+                </Text>
+
+                <Text style={styles.text}>
+                On the exhale, feel the belly draw in towards the spine, the pelvic floor and diaphragm lift upward to close the ribs and flush and cleanse the lungs, bringing out the stagnant CO2.  
+                </Text>
+
+
 
                 <Swipeable
                 renderRightActions={this.renderRightActions}
@@ -91,6 +109,16 @@ const styles = StyleSheet.create({
 
     scrollView: {
         marginHorizontal: 20,
+    },
+
+    paragraph: {
+      fontFamily: 'SuezOne-regular',
+      margin: 24,
+      fontSize: 42,
+      width: '87%',
+      color: '#1c1aa9',
+      fontWeight: 'bold',
+      textAlign: 'center',
     },
 
     text: {

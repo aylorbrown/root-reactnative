@@ -53,6 +53,10 @@ export default class GuideSquat extends React.Component {
                 {this.state.redirect && <Redirect to='/SquatTimer'/>}
                 <ScrollView style={styles.scrollView}>
     
+                <Text style={styles.paragraph}>
+                DEEP SQUAT
+                </Text>
+
                 <Text style={styles.text}>
                 Stand with your feet slightly wider than your hips, toes pointed slightly outward. Keep your spine in a neutral position - don't round you back, and don't over accentuate the natural arch of your back. Balance your weight on the heels and balls of your feet.  
                 </Text>
@@ -91,6 +95,16 @@ const styles = StyleSheet.create({
 
     scrollView: {
         marginHorizontal: 20,
+    },
+
+    paragraph: {
+      fontFamily: 'SuezOne-regular',
+      margin: 24,
+      fontSize: 42,
+      width: '90%',
+      color: '#1c1aa9',
+      fontWeight: 'bold',
+      textAlign: 'center',
     },
 
     text: {
