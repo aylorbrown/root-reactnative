@@ -9,14 +9,17 @@ import {
 
 import Splash from './components/Splash';
 import Home from './components/Home';
-import GuidePelvic from '../front-end/components/GuidePelvic';
 import ChooseExercise from '../front-end/components/ChooseExercise';
+import GuidePelvic from '../front-end/components/GuidePelvic';
 import GuideKegel from './components/GuideKegel';
+import GuideBellyBreath from './components/GuideBellyBreath';
+import GuideSquat from './components/GuideSquat';
 import KegelFastTimer from './components/KegelFastTimer';
 import KegelSlowTimer from './components/KegelSlowTimer';
-import GuideSquat from './components/GuideSquat';
 import SquatTimer from './components/SquatTimer';
+import BellyBreathTimer from './components/BellyBreathTimer';
 import ProgressChart from './components/ProgressChart';
+
 
 import UserContext from './components/UserContext';
 
@@ -104,6 +107,17 @@ export default function AppRouter() {
       {day: 7, minutes: 0}
     ]
   );
+  const [breathData, setBreathData] = useState(
+    [
+      {day: 1, minutes: 0},
+      {day: 2, minutes: 0},
+      {day: 3, minutes: 0},
+      {day: 4, minutes: 0},
+      {day: 5, minutes: 0},
+      {day: 6, minutes: 0},
+      {day: 7, minutes: 0}
+    ]
+  );
 
   // getData()
   //   .then(kegelData, squatData => {
@@ -123,6 +137,8 @@ export default function AppRouter() {
         setKegelData, 
         squatData,
         setSquatData,
+        breathData, 
+        setBreathData,
         saveData
       }}
       >
@@ -136,13 +152,13 @@ export default function AppRouter() {
             <Route 
             path="/Home" 
             component={Home} 
-            value={kegelData, squatData} 
+            value={kegelData, squatData, breathData} 
             />
   
             <Route 
             path="/ProgressChart" 
             component={ProgressChart} 
-            value={kegelData, squatData} 
+            value={kegelData, squatData, breathData} 
             />
           
             <Route path="/GuidePelvic" component={GuidePelvic} />
@@ -150,6 +166,7 @@ export default function AppRouter() {
             <Route path="/ChooseExercise" component={ChooseExercise} />
               
             <Route path="/GuideKegel" component={GuideKegel} />
+
              
             <Route 
             path="/KegelFastTimer" 
@@ -170,6 +187,16 @@ export default function AppRouter() {
             <Route path="/GuideSquat" component={GuideSquat} />
              
             <Route path="/SquatTimer" component={SquatTimer}  />
+
+            <Route path="/GuideBellyBreath" component={GuideBellyBreath} />
+
+            <Route 
+            path="/BellyBreathTimer" 
+            component={BellyBreathTimer} 
+            value={breathData}
+            setSquatData={setBreathData}
+            saveData={saveData}
+            />
               
           </Switch>
         </View>

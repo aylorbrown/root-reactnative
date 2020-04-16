@@ -57,7 +57,7 @@ constructor(props) {
         style={styles.button}
         onPress={() => {
           this.setState({
-            breatheRedirect: true
+            breathRedirect: true
           })
         }}
         >
