@@ -40,7 +40,7 @@ export default function ProgressChart() {
         />
 
         <VictoryStack
-        colorScale={['#1c1aa9', '#33c18b']}
+        colorScale={['#1c1aa9', '#33c18b', 'white']}
         >
 
         {/* kegel bar */}
@@ -65,6 +65,20 @@ export default function ProgressChart() {
         style={{ 
           data: { fill: "#33c18b" },
           labels: { fill: "white"}
+        }}
+        labels={({ datum }) => datum.minutes == 0 ? '' : datum.minutes}
+        labelComponent={<VictoryLabel dy={20}/>}
+        x={'day'}
+        y={'minutes'}
+        />
+
+        {/* breathe bar */}
+        <VictoryBar
+        data={breathData}
+        barWidth={40}
+        style={{ 
+          data: { fill: "#white" },
+          labels: { fill: "#1c1aa9"}
         }}
         labels={({ datum }) => datum.minutes == 0 ? '' : datum.minutes}
         labelComponent={<VictoryLabel dy={20}/>}

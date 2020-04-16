@@ -103,6 +103,6 @@ const styles = StyleSheet.create({
     }, 
 
     textSwiped: {
-      color: '#33c18b'
+      color: 'white'
     }
   });

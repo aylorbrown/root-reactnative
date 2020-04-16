@@ -24,10 +24,10 @@ import UserContext from './UserContext';
 const DURATION = 1000;
 
 const BellyBreathTimer = ()  => {
-    const MAXSECONDS = 5;
+    const MAXSECONDS = 4;
     const [seconds, setSeconds] = useState(MAXSECONDS);
     const [isActive, setIsActive] = useState(false);
-    const [reps, setNumberReps] = useState(10);
+    const [reps, setNumberReps] = useState(8);
     const [activity, setActivity] = useState('inhale');
     const [redirect, setRedirect] = useState(false);
     const [redirectHome, setRedirectHome] = useState(false);
@@ -92,6 +92,7 @@ const BellyBreathTimer = ()  => {
     return (
 
         <View style={styles.container}>
+            {redirect && <Redirect to='/Home' />}
             {redirectHome && <Redirect to='/Home' />}
             {redirectGuideBreath && <Redirect to='/GuideBellyBreath' />}
 
