@@ -24,6 +24,8 @@ constructor(props) {
     <SafeAreaView style={styles.container}>
       {this.state.kegelsRedirect && <Redirect to='/GuideKegel' />}
       {this.state.squatRedirect && <Redirect to='/GuideSquat' />}
+      {this.state.breathRedirect && <Redirect to='/GuideBellyBreath' />}
+
 
 
       <View>
@@ -49,6 +51,17 @@ constructor(props) {
         }}
         >
           <Text style={styles.textButton}> DEEP SQUAT </Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight 
+        style={styles.button}
+        onPress={() => {
+          this.setState({
+            breatheRedirect: true
+          })
+        }}
+        >
+          <Text style={styles.textButton}> BELLY BREATH </Text>
         </TouchableHighlight>
 
       </View>
