@@ -4,7 +4,8 @@ import {
     Text, 
     SafeAreaView,
     ScrollView, 
-    Animated
+    Animated, 
+    Image
 } from 'react-native';
 
 import Constants from 'expo-constants';
@@ -13,6 +14,9 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { RectButton } from 'react-native-gesture-handler';
 
 import SpringCircleGuide from './SpringCircleGuide';
+import SquatImage from '../assets/squat.jpg';
+
+
 
 
 export default class GuideSquat extends React.Component {
@@ -56,6 +60,11 @@ export default class GuideSquat extends React.Component {
                 <Text style={styles.paragraph}>
                 DEEP SQUAT
                 </Text>
+
+                <Image 
+                style={styles.squatGirl}
+                source={SquatImage}
+                />
 
                 <Text style={styles.text}>
                 Stand with your feet slightly wider than your hips, toes pointed slightly outward. Keep your spine in a neutral position - don't round you back, and don't over accentuate the natural arch of your back. Balance your weight on the heels and balls of your feet.  
@@ -118,5 +127,12 @@ const styles = StyleSheet.create({
 
     textSwiped: {
       color: '#33c18b'
+    },
+
+    squatGirl: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+
     }
   });
