@@ -4,7 +4,8 @@ import {
     Text, 
     SafeAreaView,
     ScrollView, 
-    Animated
+    Animated, 
+    Image
 } from 'react-native';
 
 import Constants from 'expo-constants';
@@ -13,6 +14,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { RectButton } from 'react-native-gesture-handler';
 
 import SpringCircleGuide from './SpringCircleGuide';
+import BellyImage from '../assets/bellybreath.png';
 
 
 export default class GuideSquat extends React.Component {
@@ -56,6 +58,11 @@ export default class GuideSquat extends React.Component {
                 <Text style={styles.paragraph}>
                 BELLY BREATH
                 </Text>
+
+                <Image 
+                style={styles.bellyGirl}
+                source={BellyImage}
+                />
     
                 <Text style={styles.text}>
                 Also called diaphragmatic or abdominal breathing, belly breathing is a deep breathing technique that engages your diaphragm, a dome-shaped sheet of muscle at the bottom of your ribcage that is primary responsible for respiratory function. Belly breathing is central to the practice of meditation. We spend much of the day breathing with our chest, neck, and back, taking the time to breathe through our belly can be deeply relaxing. 
@@ -101,8 +108,9 @@ export default class GuideSquat extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      padding: 8,
       marginTop: Constants.statusBarHeight,
-      backgroundColor: 'white',
+      backgroundColor: '#ffdd02',
       alignItems: 'stretch',
       justifyContent: 'center',
     },
@@ -131,6 +139,11 @@ const styles = StyleSheet.create({
     }, 
 
     textSwiped: {
-      color: 'white'
+      color: '#ffdd02'
+    }, 
+
+    bellyGirl: {
+      marginLeft: 38,
+      textAlign: 'center'
     }
   });

@@ -188,7 +188,7 @@ const styles= StyleSheet.create({
 
     container: {
         flexGrow: 1,
-        backgroundColor: '#fefffe',
+        backgroundColor: '#ffdd02',
         flexDirection: 'column',
         justifyContent: 'center',
         padding: 8,

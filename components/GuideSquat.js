@@ -14,7 +14,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { RectButton } from 'react-native-gesture-handler';
 
 import SpringCircleGuide from './SpringCircleGuide';
-import SquatImage from '../assets/squat.jpg';
+import SquatImage from '../assets/squat.png';
 
 
 
@@ -61,6 +61,7 @@ export default class GuideSquat extends React.Component {
                 DEEP SQUAT
                 </Text>
 
+
                 <Image 
                 style={styles.squatGirl}
                 source={SquatImage}
@@ -96,6 +97,7 @@ export default class GuideSquat extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      padding: 8,
       marginTop: Constants.statusBarHeight,
       backgroundColor: '#33c18b',
       alignItems: 'stretch',
@@ -130,9 +132,7 @@ const styles = StyleSheet.create({
     },
 
     squatGirl: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-
+      marginLeft: 78,
+      textAlign: 'center'
     }
   });

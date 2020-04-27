@@ -16,7 +16,7 @@ import UserContext from './UserContext';
 
 
 export default function ProgressChart() {
-  const {kegelData, squatData} = useContext(UserContext);
+  const {kegelData, squatData, breathData} = useContext(UserContext);
   console.log('we are in progress chart');
   console.log(kegelData);
     return (
@@ -77,7 +77,7 @@ export default function ProgressChart() {
         data={breathData}
         barWidth={40}
         style={{ 
-          data: { fill: "#white" },
+          data: { fill: "#ffdd02" },
           labels: { fill: "#1c1aa9"}
         }}
         labels={({ datum }) => datum.minutes == 0 ? '' : datum.minutes}

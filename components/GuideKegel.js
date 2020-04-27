@@ -4,13 +4,16 @@ import {
     Text, 
     SafeAreaView,
     ScrollView, 
-    Animated
+    Animated, 
+    Image
 } from 'react-native';
 import Constants from 'expo-constants';
 import { Redirect } from 'react-router-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { RectButton } from 'react-native-gesture-handler';
 import SpringCircleGuide from './SpringCircleGuide';
+
+import KegelImage from '../assets/kegel.png';
 
 
 export default class GuideKegel extends React.Component {
@@ -49,6 +52,15 @@ export default class GuideKegel extends React.Component {
                 {this.state.redirect && <Redirect to='/KegelFastTimer'/>}
                 <ScrollView style={styles.scrollView}>
     
+                <Text style={styles.paragraph}>
+                KEGELS
+                </Text>
+
+                <Image 
+                style={styles.kegelGirl}
+                source={KegelImage}
+                />
+
                 <Text style={styles.text}>
                 Before you can release and enhance the well-being of your pelvic floor, first you have to feel it and connect with it. 
     
@@ -84,6 +96,7 @@ export default class GuideKegel extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      padding: 8,
       marginTop: Constants.statusBarHeight,
       backgroundColor: '#fc715e',
       alignItems: 'stretch',
@@ -92,6 +105,16 @@ const styles = StyleSheet.create({
 
     scrollView: {
         marginHorizontal: 20,
+    },
+
+    paragraph: {
+      fontFamily: 'SuezOne-regular',
+      margin: 24,
+      fontSize: 42,
+      width: '87%',
+      color: '#1c1aa9',
+      fontWeight: 'bold',
+      textAlign: 'center',
     },
 
     text: {
@@ -105,5 +128,10 @@ const styles = StyleSheet.create({
 
     swipedText: {
       color: '#fc715e'
+    }, 
+
+    kegelGirl: {
+      marginLeft: 120,
+      textAlign: 'center'
     }
   });
